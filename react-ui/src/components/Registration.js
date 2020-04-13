@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
 import { withRouter } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
 
 import './Registration.css'
 
@@ -20,6 +21,7 @@ function Registration(props) {
             postalCode: '',
             phoneNumber: '',
             email: '',
+            dateOfbirth: ''
         });
 
     const [valid, setValidation]
@@ -32,7 +34,8 @@ function Registration(props) {
             iscityVaild: false,
             ispostalCodeValid: false,
             isphoneNumberVaild: false,
-            isEmailValid: false
+            isEmailValid: false,
+            isDateValid: false
         });
     const [showLoading, setShowLoading] = useState(false);
     const apiUrl = "http://localhost:3000/";
@@ -50,7 +53,8 @@ function Registration(props) {
             phoneNumber: user.phoneNumber,
             address: user.address,
             city: user.city,
-            postalCode: user.postalCode
+            postalCode: user.postalCode,
+            dateOfbirth: user.dateOfbirth
 
         };
 
@@ -77,6 +81,16 @@ function Registration(props) {
         setUser({ ...user, [e.target.name]: e.target.value });
     }
 
+    const validateDate = (e) => {
+        const dateNumberRegExp = /^\d{4}-\d{2}-\d{2}$/;
+      
+        if (e.target.value.match(dateNumberRegExp)) {
+              setValidation({ isDateValid: true })
+        } else {
+            setValidation({ isDateValid: false })
+        }
+        setUser({ ...user, [e.target.name]: e.target.value });
+    };
     const validateLastname = (e) => {
         if (e.target.value.length > 1) {
             setValidation({ islastnameVaild: true })
@@ -147,7 +161,6 @@ function Registration(props) {
 
     const isEnteredFirstNameValid = () => {if (user.firstname) return valid.isfirstnameVaild;};
     const isEnteredLastNameValid = () => {if (user.lastname) return valid.islastnameVaild;};
-    
     const isEnteredUserNameValid = () => {if (user.username) return valid.isusernameVaild;};
     const isEnteredEmailValid = () => {if (user.email) return valid.isEmailValid;};
     const isEnteredPasswordValid = () => {if (user.password) return valid.ispasswordValid;};
@@ -155,6 +168,7 @@ function Registration(props) {
     const isEnteredAddressValid = () => {if (user.address) return valid.isaddressValid;};
     const isEnteredCityValid = () => {if (user.city) return valid.iscityVaild; };
     const isEnteredPostalValid = () => {if (user.postalCode) return valid.ispostalCodeValid;};
+    const isEnteredDateValid = () => {if (user.dateOfbirth) return valid.isDateValid;};
 
     const inputClassNameHelper = boolean => {
         switch (boolean) {
@@ -224,6 +238,18 @@ function Registration(props) {
                             value={user.username}
                             placeholder="Username for signin"
                             onChange={validateUsername}
+                        />
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="name">Date of Birth</label>
+                        <input
+                            type="text"
+                            className={`form-control ${inputClassNameHelper(isEnteredDateValid())}`}
+                            id="dateOfbirth"
+                            name="dateOfbirth"
+                            value={user.dateOfbirth}
+                            placeholder="ex) 1994-08-25"
+                            onChange={validateDate}
                         />
                     </div>
                     <div className="form-group row">
