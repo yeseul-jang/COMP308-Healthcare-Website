@@ -18,7 +18,7 @@ exports.insertVitalSigns = function(req, res) {
         I've used user._id instead of username because of unique.
         however, i will change it. Just keep in mind
     */
-    User.findOne({ _id: req.body.patientUsername }, (err, user) => {
+    User.findOne({ _id: req.body.id }, (err, user) => {
 
         if (err) { return getErrorMessage(err); }
         //

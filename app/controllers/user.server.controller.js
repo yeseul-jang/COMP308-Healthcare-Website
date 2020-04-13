@@ -12,11 +12,16 @@ exports.createUser = function (req, res, next) {
 	user.save(function (err) {
 		if (err) {
 			// Call the next middleware with an error message
-			return next(err);
+			console.log("err >>>>", err);
+
+			res.json({
+				status: "error", message: err
+			});
+
+			// return next(err);
 		} else {
 			// Use the 'response' object to send a JSON response
 			res.json(user);
-
 		}
 	});
 };
@@ -78,12 +83,12 @@ exports.userByID = function (req, res, next, id) {
 exports.authenticate = function (req, res, next) {
 	// Get credentials from request
 	console.log(req.body)
-	const username = req.body.auth.username;
+	const email = req.body.auth.email;
 	const password = req.body.auth.password;
 	console.log(password)
-	console.log(username)
-	//find the user with given userName using static method findOne
-	User.findOne({ username: username }, (err, user) => {
+	console.log(email)
+	//find the user with given email using static method findOne
+	User.findOne({ email: email }, (err, user) => {
 		if (err) {
 			return next(err);
 		} else {
@@ -92,19 +97,19 @@ exports.authenticate = function (req, res, next) {
 			if (bcrypt.compareSync(password, user.password)) {
 				// Create a new token with the user id in the payload
 				// and which expires 300 seconds after issue
-				const token = jwt.sign({ id: user._id, username: user.username, usertype: user.usertype }, jwtKey,
+				const token = jwt.sign({ id: user._id, email: user.email, usertype: user.usertype, id: user._id }, jwtKey,
 					{ algorithm: 'HS256', expiresIn: jwtExpirySeconds });
 				console.log('token:', token)
 				// set the cookie as the token string, with a similar max age as the token
 				// here, the max age is in milliseconds
 				res.cookie('token', token, { maxAge: jwtExpirySeconds * 1000,httpOnly: true});
-				res.status(200).send({ screen: user.usertype, username:user.username, id: user._id });
+				res.status(200).send({ screen: user.usertype, email:user.email, id: user._id });
 					console.log("success!")
 				//call the next middleware
 				next()
 			} else {
 				res.json({
-					status: "error", message: "Invalid username/password!!!",
+					status: "error", message: "Invalid email/password!!!",
 					data: null
 				});
 			}
@@ -146,9 +151,9 @@ exports.isSignedIn = (req, res) => {
 
 	// Finally, token is ok, return the userNumber given in the token
 	console.log("payload.usertype >> ", payload.usertype);
-	console.log("payload.username >> ", payload.username);
+	console.log("payload.email >> ", payload.email);
 	
-	res.status(200).send({ screen: payload.usertype, username: payload.username});
+	res.status(200).send({ screen: payload.usertype, email: payload.email});
 }
 
 exports.signout = (req, res) => {
@@ -212,7 +217,7 @@ exports.searchPatient = (req, res) => {
 
 		// search type: id, firstname, lastname, email, birthOfDate
 		if (searchType == 'id') {
-			User.find({ username: searchStr, usertype: 'patient' }, function (err, users) {
+			User.find({ _id: searchStr, usertype: 'patient' }, function (err, users) {
 				if (err) {
 					return res.status(400).send({
 						message: getErrorMessage(err)
