@@ -15,6 +15,7 @@ module.exports = function () {
 
     // Load the models
     require('../app/models/user.server.model');
+    require('../app/models/vital.server.model');
    
     // Return the Mongoose connection instance
     return db;

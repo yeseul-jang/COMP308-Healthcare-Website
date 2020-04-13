@@ -22,12 +22,15 @@ function Login(props) {
       const loginData = { auth: { username, password } }
       //call api
       const res = await axios.post(apiUrl, loginData);
-      console.log(res.data.auth)
+      console.log("id:"+res.data.id)
+      console.log("username:"+res.data.username)
+
       console.log(res.data.screen)
       //process the response
       if (res.data.screen !== undefined) {
         setScreen(res.data.screen);
-        console.log(res.data.screen);
+        setUsername(res.data.username)
+        console.log("test>>>>>"+res.data.screen);
 
         props.history.push('/home');
         window.location.reload(false);
@@ -35,7 +38,7 @@ function Login(props) {
     } catch (e) { //print the error
       console.log(e);
     }
-
+    
   };
 
   //check if the user already logged-in

@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 
 // Define a new 'UserSchema'
 var UserSchema = new Schema({
-     usertype: String,
+    usertype: String,
 	password: String,
 	firstname:String,
 	lastname: String,
@@ -22,7 +22,8 @@ var UserSchema = new Schema({
 	address:String,
 	city:String,
 	postalCode:String,
-    phoneNumber:String
+	phoneNumber:String,
+
 });
 
 

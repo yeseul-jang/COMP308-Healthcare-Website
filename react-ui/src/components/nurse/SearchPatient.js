@@ -5,6 +5,7 @@ import axios from 'axios';
 function SearchPatient(props) {
     const [screen, setScreen] = useState('auth');
 
+    console.log('props.screen',props.screen);
   //check if the user already logged-in
   const readCookie = async () => {
     try {
