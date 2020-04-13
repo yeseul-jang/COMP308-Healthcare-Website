@@ -59,6 +59,8 @@ module.exports = function () {
     // Load the routing files
     require('../app/routes/student.server.routes.js')(app);
     require('../app/routes/emergency.server.routes.js')(app);
+    require('../app/routes/dailyrecord.server.routes.js')(app);
+    
     
     //The express.static() middleware takes one argument 
     //to determine the location of the static folder

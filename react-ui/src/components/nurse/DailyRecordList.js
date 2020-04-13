@@ -6,10 +6,10 @@ import { withRouter } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 
-function EmergencyAlertList(props) {
+function DailyRecordList(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/emergencies";
+  const apiUrl = "http://localhost:3000/dailyrecords";
 
 //   useEffect(() => {
 //     // const fetchData = async () => {
@@ -39,7 +39,7 @@ function EmergencyAlertList(props) {
 
   const showDetail = (id) => {
     props.history.push({
-      pathname: '/showemergency/' + id
+      pathname: '/showrecord/' + id
     });
   }
 
@@ -53,32 +53,32 @@ function EmergencyAlertList(props) {
           <ListGroup.Item key={idx} action onClick={() => { showDetail(item.documentId) }}>{item.brand}</ListGroup.Item>
         ))}
       </ListGroup> */}
-      <h2 style={{textAlign: "center"}}>Emergency Alert List</h2>
+      <h2 style={{textAlign: "center"}}>Daily Health Record List</h2>
       <Table striped bordered hover style= {{marginTop: 20, width: 1200, marginLeft: 150}}>
             <thead>
               <tr>
-                <th>Emergency Code</th>
-                <th>Subject</th>
-                <th>Description</th>
-                <th>Contact Name</th>
-                <th>Contact Number</th>
-                <th>Creation Time</th>
-                <th>Patient</th>
-                <th>Status</th>
+                <th>Patient Name</th>
+                <th>Nurse Practitioner</th>
+                <th>Pulse Rate</th>
+                <th>Blood Pressure</th>
+                <th>Weight</th>
+                <th>Body Temperature</th>
+                <th>Respiratory Rate</th>
+                <th>Submit Time</th>
               </tr>
             </thead>
             
             <tbody>
             {data.map((item, idx) => (
               <tr key={idx}>
-            <td className="App-td" action onClick={() => { showDetail(item._id) }}>{item.emergencyCode}</td>
-            <td>{item.emergencySubject}</td>
-            <td>{item.description}</td>
-            <td>{item.contactName}</td>
-            <td>{item.contactNumber}</td>
-            <td>{item.creationTime}</td>
-            <td>{item.patientId}</td>
-            <td style={{color: 'green'}}>{item.status}</td>
+            <td className="App-td" action onClick={() => { showDetail(item._id) }}>{item.patientUsername}</td>
+            <td>{item.nurseUsername}</td>
+            <td>{item.pulseRate}</td>
+            <td>{item.bloodPressure}</td>
+            <td>{item.weight}</td>
+            <td>{item.temperature}</td>
+            <td>{item.respiratoryRate}</td>
+            <td >{item.creationTime}</td>
               </tr>
           
         ))}
@@ -88,4 +88,4 @@ function EmergencyAlertList(props) {
   );
 }
 
-export default withRouter(EmergencyAlertList);
+export default withRouter(DailyRecordList);

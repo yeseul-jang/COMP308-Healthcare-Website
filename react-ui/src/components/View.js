@@ -51,6 +51,12 @@ function View(props) {
     });
   };
 
+  const createDailyrecord = (username) => {
+    props.history.push({
+      pathname: '/createDailyRecord/' + username
+    });
+  };
+
   const viewPatient = (username) => {
     props.history.push({
       pathname: '/showPatient/' + username
@@ -86,7 +92,7 @@ function View(props) {
         <p>{data}</p>
         <button onClick={() => createEmergency(screen)}>Send Emergency Alert</button>
         {/* <button onClick={() => viewPatient(screen)}>View My Account Details</button> */}
-        <button onClick={() => viewPatient(screen)}>Daily Health Self-Check</button>
+        <button onClick={() => createDailyrecord(screen)}>Daily Health Self-Check</button>
         <button onClick={deleteCookie}>Log out</button>
       </div>
       }
