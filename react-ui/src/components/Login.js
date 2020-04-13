@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-//
-import View from './View'
-//
 import { withRouter } from 'react-router-dom';
 
 function Login(props) {
@@ -31,6 +28,9 @@ function Login(props) {
       if (res.data.screen !== undefined) {
         setScreen(res.data.screen);
         console.log(res.data.screen);
+
+        props.history.push('/home');
+        window.location.reload(false);
       }
     } catch (e) { //print the error
       console.log(e);
@@ -89,7 +89,9 @@ function Login(props) {
               <Button className="ButtonSpace" variant="success" onClick={() => { register() }}>Regester</Button>
             </div>
           </Form>
-          : <View screen={screen} setScreen={setScreen} />
+
+          : 
+          <div></div>
         }
       </div>
     </div>
