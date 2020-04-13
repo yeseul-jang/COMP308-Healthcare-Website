@@ -73,7 +73,11 @@ function SearchPatient(props) {
         setSearch({ ...search, [e.target.name]: e.target.value });
     }
 
-    const detail = () => {
+    const detail = (id) => {
+      console.log("check user id: " +id);
+      props.history.push({
+        pathname: '/detailPatientInfo/' + id
+      });
     }
 
     return (
@@ -137,7 +141,7 @@ function SearchPatient(props) {
                                     <td>{item.phoneNumber}</td>
                                     <td>{item.dateOfbirth}</td>
                                     <td>
-                                        <Button className="ButtonSpace">Detail</Button>
+                                        <Button  className="ButtonSpace" onClick={() => { detail(item._id) }}>Detail</Button>
                                     </td>
                                 </tr>
                             ))}
