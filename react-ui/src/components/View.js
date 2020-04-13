@@ -4,6 +4,7 @@ import Home from './Home';
 import Button from 'react-bootstrap/Button';
 import { Link, Route, BrowserRouter as Router } from "react-router-dom";
 import Registration from './Registration';
+import { withRouter } from 'react-router-dom';
 
 
 //
@@ -12,7 +13,8 @@ import axios from 'axios';
 function View(props) {
   // read the info from props, coming from the ancestor component
   const { screen, setScreen } = props;
-  const { type, setType } = props;
+  // const { type, setType } = props;
+  // const {patientData, setPatientData} =props;
 
   // return a stateful value and funcion to update it
   const [data, setData] = useState();
@@ -43,6 +45,18 @@ function View(props) {
     }
   }
 
+  const createEmergency = (username) => {
+    props.history.push({
+      pathname: '/createEmergency/' + username
+    });
+  };
+
+  const viewPatient = (username) => {
+    props.history.push({
+      pathname: '/showPatient/' + username
+    });
+  }
+
   return (
     <div className="App">
       {screen === 'nurse'
@@ -67,12 +81,18 @@ function View(props) {
           </Router>
           <Button className="ButtonSpace" variant="warning" onClick={deleteCookie}>Log out</Button>
         </div>
-        : <Home>
-        </Home>
+        : <div>
+        <h2>Welcome back, {screen}</h2>
+        <p>{data}</p>
+        <button onClick={() => createEmergency(screen)}>Send Emergency Alert</button>
+        <button onClick={() => viewPatient(screen)}>View My Account Details</button>
+        <button onClick={() => viewPatient(screen)}>Daily Health Self-Check</button>
+        <button onClick={deleteCookie}>Log out</button>
+      </div>
       }
     </div>
   );
 }
 
 //
-export default View;
+export default withRouter(View);

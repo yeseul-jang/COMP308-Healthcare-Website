@@ -10,6 +10,7 @@ import {
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import './App.css';
+
 //
 
 
@@ -18,6 +19,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Registration from './components/Registration';
 import RegisterPatientInfo from './components/nurse/RegisterPatientInfo';
+import CreateEmergencyAlert from './components/patient/CreateEmergencyAlert';
 
 
 //
@@ -43,7 +45,7 @@ function App() {
           <Route render ={()=> < Login />} path="/login" />
           <Route render ={()=> < Registration />} path="/registration" />
           <Route render ={()=> < RegisterPatientInfo />} path="/registerPatientInfo" />
-
+          <Route render ={()=> < CreateEmergencyAlert />} path="/createEmergency/:username" />
       </div>
 
     </Router>
