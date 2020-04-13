@@ -8,16 +8,5 @@ module.exports = function (app) {
     app.get('/read_cookie', users.isSignedIn);
     app.get('/signout', users.signout);
     app.get('/welcome', users.welcome);
-
-    /*
-    // Related to Student
-    app.get('/users', users.requiresLogin, users.list);
-    app.route('/users/:studentId')
-        .get(users.read)
-        .put(users.update)
-        .delete(users.delete)
-
-    app.param('studentId', users.studentByID);
-*/
     app.post('/', users.createUser);
 }
