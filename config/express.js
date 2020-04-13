@@ -57,7 +57,7 @@ module.exports = function () {
     app.engine('html', require('ejs').renderFile);
     //bootstrap the app using the controller and routing modules
     // Load the routing files
-    require('../app/routes/student.server.routes.js')(app);
+    require('../app/routes/user.server.routes.js')(app);
     
     //The express.static() middleware takes one argument 
     //to determine the location of the static folder

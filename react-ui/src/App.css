@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.LoginForm {
+  width: 40%;
+  margin: auto;
+}
+
+.Buttons {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.ButtonSpace {
+  margin: 4px;
+}

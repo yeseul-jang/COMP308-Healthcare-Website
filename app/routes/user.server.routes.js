@@ -1,4 +1,4 @@
-var users = require('../../app/controllers/student.server.controller');
+var users = require('../../app/controllers/user.server.controller');
 var express = require('express');
 var router = express.Router();
 

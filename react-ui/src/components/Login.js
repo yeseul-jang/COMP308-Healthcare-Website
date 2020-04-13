@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-//import ReactDOM from 'react-dom';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 //
 import View from './View'
 //
-function App() {
+import { withRouter } from 'react-router-dom';
+
+function Login(props) {
   //state variable for the screen, admin or user
   const [screen, setScreen] = useState('auth');
   //store input field data, user name and password
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  
+
   const apiUrl = "http://localhost:3000/signin";
   //send username and password to the server
   // for initial authentication
@@ -35,9 +35,9 @@ function App() {
     } catch (e) { //print the error
       console.log(e);
     }
-  
+
   };
-  
+
   //check if the user already logged-in
   const readCookie = async () => {
     try {
@@ -60,26 +60,41 @@ function App() {
   useEffect(() => {
     readCookie();
   }, []); //only the first render
+
+  const register = () => {
+    props.history.push({
+      pathname: '/registration'
+    });
+  }
+
   //
   return (
-    <div className="App">
-      {screen === 'auth' 
-        ? <div>
-          <label>Username: </label>
-          <br/>
-          <input type="text" onChange={e => setUsername(e.target.value)} />
-          <br/>
-          <label>Password: </label>
-          <br/>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-          <br/>
-          <button onClick={auth}>Login</button>
-        </div>
-        : <View screen={screen} setScreen={setScreen} />
-      }
+    <div>
+      <br /><br />
+      <div className="LoginForm">
+        {screen === 'auth'
+          ?
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="email" placeholder="User Name" type="text" onChange={e => setUsername(e.target.value)} />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+            </Form.Group>
+            <div className="Buttons">
+              <Button className="ButtonSpace" variant="primary" onClick={auth}>Login</Button>
+              <Button className="ButtonSpace" variant="success" onClick={() => { register() }}>Regester</Button>
+            </div>
+          </Form>
+          : <View screen={screen} setScreen={setScreen} />
+        }
+      </div>
     </div>
   );
 }
 
-export default App;
+export default withRouter(Login);
 
