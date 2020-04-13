@@ -7,6 +7,6 @@ module.exports = function (app) {
     app.post('/signin', users.authenticate);
     app.get('/read_cookie', users.isSignedIn);
     app.get('/signout', users.signout);
-    app.get('/welcome', users.welcome);
     app.post('/', users.createUser);
+    app.post('/searchPatient', users.searchPatient);
 }
