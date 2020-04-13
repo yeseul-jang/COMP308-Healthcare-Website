@@ -74,7 +74,6 @@ function SearchPatient(props) {
     }
 
     const detail = () => {
-
     }
 
     return (
