@@ -12,7 +12,8 @@ function Registration(props) {
             _id: '',
             usertype: '',
             password: '',
-            name: '',
+            firstname: '',
+            lastname: '',
             username: '',
             address: '',
             city: '',
@@ -24,7 +25,8 @@ function Registration(props) {
     const [valid, setValidation]
         = useState({
             ispasswordValid: false,
-            isnameVaild: false,
+            isfirstnameVaild: false,
+            islastnameVaild: false,
             isusernameValid:false,
             isaddressValid: false,
             iscityVaild: false,
@@ -40,7 +42,8 @@ function Registration(props) {
         e.preventDefault();
         const data = {
             usertype: user.usertype,
-            name: user.name,
+            firstname: user.firstname,
+            lastname: user.lastname,
             username:user.username,
             email: user.email,
             password: user.password,
@@ -61,19 +64,27 @@ function Registration(props) {
 
     const onChange = (e) => {
         // e.persist();
-        if (e.target.name === 'name') {
+        if (e.target.name === 'firstname') {
             if (e.target.value.length > 1) {
-                setValidation({ isnameVaild: true })
-                setUser({ name: e.target.valid })
+                setValidation({ isfirstnameVaild: true })
+                setUser({ firstname: e.target.valid })
                
             }
             else {
-                setValidation({ isnameVaild: false })
+                setValidation({ isfirstnameVaild: false })
             }
         } console.log(e.target.value)
         setUser({ ...user, [e.target.name]: e.target.value });
     }
 
+    const validateLastname = (e) => {
+        if (e.target.value.length > 1) {
+            setValidation({ islastnameVaild: true })
+        } else {
+            setValidation({ islastnameVaild: false })
+        }
+        setUser({ ...user, [e.target.name]: e.target.value });
+    };
     const validateEmail = (e) => {
         const emailRegExp = /^[\w-]+(\.[\w-]+)*@([a-z0-9-]+(\.[a-z0-9-]+)*?\.[a-z]{2,6}|(\d{1,3}\.){3}\d{1,3})(:\d{4})?$/;
       
@@ -134,7 +145,9 @@ function Registration(props) {
         setUser({ ...user, [e.target.name]: e.target.value });
     };
 
-    const isEnteredNameValid = () => {if (user.name) return valid.isnameVaild;};
+    const isEnteredFirstNameValid = () => {if (user.firstname) return valid.isfirstnameVaild;};
+    const isEnteredLastNameValid = () => {if (user.lastname) return valid.islastnameVaild;};
+    
     const isEnteredUserNameValid = () => {if (user.username) return valid.isusernameVaild;};
     const isEnteredEmailValid = () => {if (user.email) return valid.isEmailValid;};
     const isEnteredPasswordValid = () => {if (user.password) return valid.ispasswordValid;};
@@ -180,15 +193,25 @@ function Registration(props) {
                         </div> 
                     </div><br></br>
                     <div className="form-group row">
-                        <label htmlFor="name">Name</label>
+                        <label htmlFor="name">First Name</label>
                         <input
                             type="text"
-                            className={`form-control ${inputClassNameHelper(isEnteredNameValid())}`}
-                            id="name"
-                            name="name"
-                            value={user.name}
-                            placeholder="Full name"
+                            className={`form-control ${inputClassNameHelper(isEnteredFirstNameValid())}`}
+                            id="firstname"
+                            name="firstname"
+                            value={user.firstname}
                             onChange={onChange}
+                        />
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="name">Last Name</label>
+                        <input
+                            type="text"
+                            className={`form-control ${inputClassNameHelper(isEnteredLastNameValid())}`}
+                            id="lastname"
+                            name="lastname"
+                            value={user.lastname}
+                            onChange={validateLastname}
                         />
                     </div>
                     <div className="form-group row">
