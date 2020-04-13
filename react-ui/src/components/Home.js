@@ -17,6 +17,7 @@ function Home(props)
         if (res.data.screen !== undefined) {
           setScreen(res.data.screen);
           console.log(res.data.screen)
+          console.log(res.data.username)
         }
       } catch (e) {
         setScreen('auth');
