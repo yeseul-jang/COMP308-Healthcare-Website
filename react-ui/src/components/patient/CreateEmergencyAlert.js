@@ -26,7 +26,7 @@ function CreateEmergencyAlert(props) {
     axios.post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/emergencylist/' + result.data.patientId)
+        props.history.push('/emergencies/')
       }).catch((error) => setShowLoading(false));
   };
 

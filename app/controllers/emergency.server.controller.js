@@ -100,14 +100,14 @@ exports.readEmergencies = function(req, res) {
 	res.json(req.emergencies);
 };
 
-exports.emergencyByPatient = function (req, res, next, patientId) {
-    Patient.findOne({username: patientId}, (err, patient) => {
+exports.emergencyByPatient = function (req, res, next, username) {
+    Patient.findOne({username: username}, (err, patient) => {
         if(err) { return getErrorMessage(err);}
-        req.id = patient._id;
-        console.log(req.id);
+        req.username = patient.username;
+        console.log(req.username);
     }).then(function () {
         Emergency.find({
-            patientId: req.id
+            patientId: req.username
         }, (err, emergencies) =>{
             if (err) { return getErrorMessage(err); }
             req.emergencies = emergencies;

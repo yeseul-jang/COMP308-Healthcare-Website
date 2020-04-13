@@ -21,6 +21,7 @@ import Registration from './components/Registration';
 import RegisterPatientInfo from './components/nurse/RegisterPatientInfo';
 import CreateEmergencyAlert from './components/patient/CreateEmergencyAlert';
 import EmergencyAlertList from './components/patient/EmergencyAlertList';
+import EmergencyAlertListAll from './components/nurse/EmergencyAlertList';
 
 
 //
@@ -48,6 +49,7 @@ function App() {
           <Route render ={()=> < RegisterPatientInfo />} path="/registerPatientInfo" />
           <Route render ={()=> < CreateEmergencyAlert />} path="/createEmergency/:username" />
           <Route render ={()=> <EmergencyAlertList />} path="/emergencylist/:username" />
+          <Route render ={()=> <EmergencyAlertListAll />} path="/emergencies" />
       </div>
 
     </Router>

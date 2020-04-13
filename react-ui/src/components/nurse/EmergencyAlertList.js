@@ -9,15 +9,15 @@ import Table from 'react-bootstrap/Table';
 function EmergencyAlertList(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/emergencies/" + props.match.params.username;
+  const apiUrl = "http://localhost:3000/emergencies";
 
 //   useEffect(() => {
 //     // const fetchData = async () => {
 //     //   // const result = await axios(apiUrl);
 //       fetch(apiUrl).then(res => res.json())
-//       .then((data) => {
-//         console.log(data)
-//         setData(data);
+//       .then((result) => {
+//         console.log(result.data)
+//         setData(result.data);
 //         setShowLoading(false);
 //       })
 //       .catch(console.log)
@@ -53,7 +53,7 @@ function EmergencyAlertList(props) {
           <ListGroup.Item key={idx} action onClick={() => { showDetail(item.documentId) }}>{item.brand}</ListGroup.Item>
         ))}
       </ListGroup> */}
-      <h2 style={{textAlign: "center"}}>Emergency Alert Made By {props.match.params.username}</h2>
+      <h2 style={{textAlign: "center"}}>Emergency Alert List</h2>
       <Table striped bordered hover style= {{marginTop: 20, width: 1200, marginLeft: 150}}>
             <thead>
               <tr>

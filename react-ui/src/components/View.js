@@ -85,7 +85,7 @@ function View(props) {
         <h2>Welcome back, {screen}</h2>
         <p>{data}</p>
         <button onClick={() => createEmergency(screen)}>Send Emergency Alert</button>
-        <button onClick={() => viewPatient(screen)}>View My Account Details</button>
+        {/* <button onClick={() => viewPatient(screen)}>View My Account Details</button> */}
         <button onClick={() => viewPatient(screen)}>Daily Health Self-Check</button>
         <button onClick={deleteCookie}>Log out</button>
       </div>
