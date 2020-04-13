@@ -73,6 +73,10 @@ function SearchPatient(props) {
         setSearch({ ...search, [e.target.name]: e.target.value });
     }
 
+    const detail = () => {
+
+    }
+
     return (
         <div>
             {showLoading &&
@@ -105,6 +109,7 @@ function SearchPatient(props) {
                 </div>
             }
 
+            <br/><br/><br/>
             {result.length !== 0
                 ?
                 <div>
