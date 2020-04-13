@@ -74,9 +74,16 @@ function App() {
             
             {screen === 'nurse' 
               ?
-              <Nav.Link href="/insertPatientVital">Insert Patient Vital</Nav.Link>
+                <Nav.Link href="/insertPatientVital">Insert Patient Vital</Nav.Link>
               :
-              <Nav.Link href="/searchPatient">Search Patient</Nav.Link>
+              <div></div>
+            }
+
+            {screen === 'nurse'               
+              ?
+                <Nav.Link href="/searchPatient">Search Patient</Nav.Link>              
+              :
+              <div></div>
             }
           </Nav>
         </Navbar.Collapse>
