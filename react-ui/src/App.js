@@ -36,6 +36,7 @@ function App() {
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/registration">Registration</Nav.Link>
+            <Nav.Link href="/emergencies">Emergency Alert</Nav.Link>
             
 
           </Nav>
