@@ -12,6 +12,10 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Registration from './components/Registration';
 import SearchPatient from './components/nurse/SearchPatient';
+import InsertPatientVital from './components/nurse/InsertPatientVital';
+import DetailPatientInfo from './components/nurse/DetailPatientInfo';
+
+
 
 import axios from 'axios';
 
@@ -70,9 +74,9 @@ function App() {
             
             {screen === 'nurse' 
               ?
-                <Nav.Link href="/searchPatient">Search Patient</Nav.Link>
+              <Nav.Link href="/insertPatientVital">Insert Patient Vital</Nav.Link>
               :
-                <div></div>
+              <Nav.Link href="/searchPatient">Search Patient</Nav.Link>
             }
           </Nav>
         </Navbar.Collapse>
@@ -83,6 +87,9 @@ function App() {
         <Route render={() => < Login />} path="/login" />
         <Route render={() => < Registration />} path="/registration" />
         <Route render={() => < SearchPatient />} path="/searchPatient" />
+        <Route render={() => < InsertPatientVital />} path="/insertPatientVital" />
+        <Route render={() => < DetailPatientInfo />} path="/detailPatientInfo/:id" />
+
       </div>
 
     </Router>

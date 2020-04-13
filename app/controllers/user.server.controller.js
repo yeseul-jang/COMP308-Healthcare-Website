@@ -98,7 +98,7 @@ exports.authenticate = function(req, res, next) {
 				// set the cookie as the token string, with a similar max age as the token
 				// here, the max age is in milliseconds
 				res.cookie('token', token, { maxAge: jwtExpirySeconds * 1000,httpOnly: true});
-				res.status(200).send({ screen: user.usertype, type:user.usertype });
+				res.status(200).send({ screen: user.usertype, username:user.username, id: user._id });
 					console.log("success!")
 				//call the next middleware
 				next()
@@ -144,7 +144,9 @@ exports.isSignedIn = (req, res) => {
   
 	// Finally, token is ok, return the userNumber given in the token
 	console.log("payload.usertype >> ", payload.usertype);
-	res.status(200).send({ screen: payload.usertype });
+	console.log("payload.username >> ", payload.username);
+	
+	res.status(200).send({ screen: payload.usertype, username: payload.username});
 }
 
 exports.signout = (req, res) => {
