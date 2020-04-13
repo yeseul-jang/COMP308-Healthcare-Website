@@ -55,6 +55,8 @@ exports.create = function (req, res, next, username) {
     });
 })
 };
+
+
 //
 // Create a new 'list' controller method; returns all users
 exports.list = function (req, res, next) {

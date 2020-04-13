@@ -8,7 +8,12 @@ module.exports = function (app) {
     // and list emergencies when /emergencies link is selected
     app.get("/emergencies",emergencies.list); //go to http://localhost:3000/emergencies to see the list
     //handle a post request made to root path
-    app.post('/emergency/:id', emergencies.create);
+    // app.post('/emergency/:id', emergencies.create);
+
+    app.route('/emergency/:username')
+    .post(emergencies.create)
+
+    app.param('username', emergencies.create);
     //
     // Set up the 'emergencies' parameterized routes 
 	app.route('/emergencies/:emergencyId')

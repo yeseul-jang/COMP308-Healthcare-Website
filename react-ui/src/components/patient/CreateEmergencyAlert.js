@@ -10,7 +10,7 @@ function CreateEmergencyAlert(props) {
   const [emergency, setEmergency] = useState({ _id: '', emergencyCode: '', emergencySubject: '', 
   description: '', contactName: '', contactNumber: '', status: ''});
   const [showLoading, setShowLoading] = useState(false);
-  const apiUrl = "http://localhost:3000/emergency"+ props.match.params.username;
+  const apiUrl = "http://localhost:3000/emergency/"+ props.match.params.username;
 
   const saveEmergency = (e) => {
     setShowLoading(true);
@@ -26,7 +26,7 @@ function CreateEmergencyAlert(props) {
     axios.post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/showEmergencyAlert/' + result.data._id)
+        props.history.push('/emergencylist/' + result.data.patientId)
       }).catch((error) => setShowLoading(false));
   };
 
@@ -60,6 +60,11 @@ function CreateEmergencyAlert(props) {
           <Form.Group>
             <Form.Label>Contact Name</Form.Label>
             <Form.Control type="text" name="contactName" id="contactName" placeholder="Enter contact name" value={emergency.contactName} onChange={onChange} style={{width: 700 }}/>
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Contact Number</Form.Label>
+            <Form.Control type="text" name="contactNumber" id="contactNumber" placeholder="Enter contact number" value={emergency.contactNumber} onChange={onChange} style={{width: 700 }}/>
           </Form.Group>
 
           <Button variant="primary" type="submit" style={{width: 700, marginTop: 30 }}>
