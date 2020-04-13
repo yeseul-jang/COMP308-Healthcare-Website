@@ -14,7 +14,6 @@ function Registration(props) {
             password: '',
             firstname: '',
             lastname: '',
-            username: '',
             address: '',
             city: '',
             postalCode: '',
@@ -28,7 +27,6 @@ function Registration(props) {
             ispasswordValid: false,
             isfirstnameVaild: false,
             islastnameVaild: false,
-            isusernameValid:false,
             isaddressValid: false,
             iscityVaild: false,
             ispostalCodeValid: false,
@@ -46,7 +44,6 @@ function Registration(props) {
             usertype: user.usertype,
             firstname: user.firstname,
             lastname: user.lastname,
-            username:user.username,
             email: user.email,
             password: user.password,
             phoneNumber: user.phoneNumber,
@@ -57,11 +54,13 @@ function Registration(props) {
 
         };
 
-        axios.post(apiUrl, data)
-            .then((result) => {
-                setShowLoading(false);
-                props.history.push('/' + result.data._id)
-            }).catch((error) => setShowLoading(false));
+        axios.post(apiUrl, data).then((result) => {
+            setShowLoading(false);
+            props.history.push('/' + result.data._id)
+        }).catch((error) => {
+            console.log("error >>> ", error);
+            setShowLoading(false)}
+        );
     };
 
 
@@ -125,14 +124,6 @@ function Registration(props) {
         }
         setUser({ ...user, [e.target.name]: e.target.value });
     };
-    const validateUsername = (e) => {
-        if (e.target.value.length > 3) {
-            setValidation({ isusernameVaild: true })
-        } else {
-            setValidation({ isusernameVaild: false })
-        }
-        setUser({ ...user, [e.target.name]: e.target.value });
-    };
     const validateAddress = (e) => {
         if (e.target.value.length > 7) {
             setValidation({ isaddressValid: true })
@@ -160,7 +151,6 @@ function Registration(props) {
 
     const isEnteredFirstNameValid = () => {if (user.firstname) return valid.isfirstnameVaild;};
     const isEnteredLastNameValid = () => {if (user.lastname) return valid.islastnameVaild;};
-    const isEnteredUserNameValid = () => {if (user.username) return valid.isusernameVaild;};
     const isEnteredEmailValid = () => {if (user.email) return valid.isEmailValid;};
     const isEnteredPasswordValid = () => {if (user.password) return valid.ispasswordValid;};
     const isEnteredPhoneValid = () => {if (user.phoneNumber) return valid.isphoneNumberVaild;};
@@ -206,52 +196,6 @@ function Registration(props) {
                         </div> 
                     </div><br></br>
                     <div className="form-group row">
-                        <label htmlFor="name">First Name</label>
-                        <input
-                            type="text"
-                            className={`form-control ${inputClassNameHelper(isEnteredFirstNameValid())}`}
-                            id="firstname"
-                            name="firstname"
-                            value={user.firstname}
-                            onChange={onChange}
-                        />
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="name">Last Name</label>
-                        <input
-                            type="text"
-                            className={`form-control ${inputClassNameHelper(isEnteredLastNameValid())}`}
-                            id="lastname"
-                            name="lastname"
-                            value={user.lastname}
-                            onChange={validateLastname}
-                        />
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="name">Username</label>
-                        <input
-                            type="text"
-                            className={`form-control ${inputClassNameHelper(isEnteredUserNameValid())}`}
-                            id="username"
-                            name="username"
-                            value={user.username}
-                            placeholder="Username for signin"
-                            onChange={validateUsername}
-                        />
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="name">Date of Birth</label>
-                        <input
-                            type="text"
-                            className={`form-control ${inputClassNameHelper(isEnteredDateValid())}`}
-                            id="dateOfbirth"
-                            name="dateOfbirth"
-                            value={user.dateOfbirth}
-                            placeholder="ex) 1994-08-25"
-                            onChange={validateDate}
-                        />
-                    </div>
-                    <div className="form-group row">
                         <label htmlFor="emailInput">Email</label>
                         <input
                             type="email"
@@ -278,6 +222,40 @@ function Registration(props) {
 
                         />
                     </div>
+                    <div className="form-group row">
+                        <label htmlFor="name">First Name</label>
+                        <input
+                            type="text"
+                            className={`form-control ${inputClassNameHelper(isEnteredFirstNameValid())}`}
+                            id="firstname"
+                            name="firstname"
+                            value={user.firstname}
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="name">Last Name</label>
+                        <input
+                            type="text"
+                            className={`form-control ${inputClassNameHelper(isEnteredLastNameValid())}`}
+                            id="lastname"
+                            name="lastname"
+                            value={user.lastname}
+                            onChange={validateLastname}
+                        />
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="name">Date of Birth</label>
+                        <input
+                            type="text"
+                            className={`form-control ${inputClassNameHelper(isEnteredDateValid())}`}
+                            id="dateOfbirth"
+                            name="dateOfbirth"
+                            value={user.dateOfbirth}
+                            placeholder="ex) 1994-08-25"
+                            onChange={validateDate}
+                        />
+                    </div>                    
                     <div className="form-group row">
                         <label htmlFor="phoneNumberInput">Phone Number</label>
                         <input

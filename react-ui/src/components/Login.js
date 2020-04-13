@@ -8,28 +8,28 @@ function Login(props) {
   //state variable for the screen, admin or user
   const [screen, setScreen] = useState('auth');
   //store input field data, user name and password
-  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const apiUrl = "http://localhost:3000/signin";
-  //send username and password to the server
+  //send email and password to the server
   // for initial authentication
   const auth = async () => {
     console.log('calling auth')
-    console.log(username)
+    console.log(email)
     try {
       //make a get request to /authenticate end-point on the server
-      const loginData = { auth: { username, password } }
+      const loginData = { auth: { email, password } }
       //call api
       const res = await axios.post(apiUrl, loginData);
       console.log("id:"+res.data.id)
-      console.log("username:"+res.data.username)
+      console.log("email:"+res.data.email)
 
       console.log(res.data.screen)
       //process the response
       if (res.data.screen !== undefined) {
         setScreen(res.data.screen);
-        setUsername(res.data.username)
+        setEmail(res.data.email)
         console.log("test>>>>>"+res.data.screen);
 
         props.history.push('/home');
@@ -79,8 +79,8 @@ function Login(props) {
           ?
           <Form>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Username</Form.Label>
-              <Form.Control type="email" placeholder="User Name" type="text" onChange={e => setUsername(e.target.value)} />
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" placeholder="Email" type="text" onChange={e => setEmail(e.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">

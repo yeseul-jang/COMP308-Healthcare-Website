@@ -130,7 +130,7 @@ function SearchPatient(props) {
                         <tbody>
                             {result.map((item, idx) => (
                                 <tr>
-                                    <td>{item.username}</td>
+                                    <td>{item.id}</td>
                                     <td>{item.firstname}</td>
                                     <td>{item.lastname}</td>
                                     <td>{item.email}</td>
