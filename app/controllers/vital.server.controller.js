@@ -44,10 +44,7 @@ exports.insertVitalSigns = function(req, res) {
     });
 };
 
-exports.read = function(req, res) {
-	// Use the 'response' object to send a JSON response
-	res.json(req.vital);
-};
+
 
 exports.list = function (req, res, next) {
     // Use the 'Student' instance's 'find' method to retrieve a new student document
@@ -62,17 +59,26 @@ exports.list = function (req, res, next) {
 };
 
 
+exports.readVitalInfo = function(req, res) {
+    // Use the 'response' object to send a JSON response
+    console.log(">>>>>>>>>>current :" + req.vitals)
+    res.status(200).json(req.vitals);
+	//res.json();
+};
+
+
 exports.vitalByPatientId = function(res,req,next,patient) {
-    console.log(">>>>>>> vitalByPatientId>> patientId: ", patient);
-    Vital.findOne({
-        patient: patient
-	}, (err, vital) => {
-		if (err) {
-			return next(err);
-		} else {
-            req.vital = vital;
-            console.log("vital >>>", vital);
-			next();
-		}
-	});
+    console.log(">>>>>>>IN>>>>>>");
+    console.log(">>>>>>> vitalByPatientId>> patientId: "+ patient);
+    
+    Vital.find({ patient: patient}, function (err, vitals) {
+        if (err) {
+            console.log(" >>>", err);
+            return next(err);
+        } else {
+            req.vitals = vitals;
+            console.log("vital >>>", req.vitals);
+            next();
+        }
+    });
 };
