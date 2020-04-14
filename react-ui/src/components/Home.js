@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import View from './View'
 
 function Home(props)
 {
@@ -32,9 +33,17 @@ function Home(props)
 
     return (
         <div>
+          {screen === 'patient'
+          ?
+          <View/>
+          :
+          <div>
             <h1>HOME: {screen}</h1>
             <h2> Hero Healthcare Website</h2>
             <p> created by Hero Group</p>
+          </div>
+        }
+            
         </div>
     );
 

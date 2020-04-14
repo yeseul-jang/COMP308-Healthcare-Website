@@ -47,7 +47,7 @@ function DailyRecordList(props) {
             <tbody>
             {data.map((item, idx) => (
               <tr key={idx}>
-            <td className="App-td" action onClick={() => { showDetail(item._id) }}>{item.patientEmail}</td>
+            <td>{item.patientEmail}</td>
             <td>{item.nurseUsername}</td>
             <td>{item.pulseRate}</td>
             <td>{item.bloodPressure}</td>
