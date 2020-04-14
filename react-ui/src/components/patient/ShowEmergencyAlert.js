@@ -49,8 +49,8 @@ function ShowEmergencyAlert(props) {
         <p>Subject: {data.emergencySubject}</p>
         <p>Description: {data.description}</p>
         <p>Contact Name: {data.contactName}</p>
-        <p>Contact Name: {data.contactName}</p>
-        <p>Contact Number: {data.creationTime}</p>
+        <p>Contact Number: {data.contactNumber}</p>
+        <p>Sent Time: {data.creationTime}</p>
         <p>Status: {data.status}</p>
        
         {data.status === "Active"
