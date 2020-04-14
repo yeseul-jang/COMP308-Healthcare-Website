@@ -22,7 +22,7 @@ module.exports = function (app) {
 
     app.param('dailyrecordId', dailyrecords.dailyRecordByID);
 
-    app.route('/dailyrecords/:patientEmail')
+    app.route('/dailyrecordslist/:patientEmail')
     .get(dailyrecords.readDailyRecords)
     // Set up the parameter middleware
     //All param callbacks will be called before any handler of 

@@ -27,7 +27,7 @@ function CreateDailyRecord(props) {
     axios.post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/dailyrecords/')
+        props.history.push('/dailyrecordlist/' + props.match.params.email)
       }).catch((error) => setShowLoading(false));
   };
 
@@ -44,8 +44,8 @@ function CreateDailyRecord(props) {
         </Spinner> 
       } 
       <Jumbotron>
-    <h2>Daily Health Check-in for {props.match.params.email}</h2>
-        <Form onSubmit={saveDailyRecord}>
+    <h2 style={{textAlign: "center", color: "green"}}>Don't Forget Your Daily Health Check-in </h2>
+        <Form onSubmit={saveDailyRecord} style={{marginLeft: 380}}>
           <Form.Group>
             <Form.Label> Pulse Rate</Form.Label>
             <Form.Control type="number" name="pulseRate" id="pulseRate" placeholder="Enter your pulse rate" value={dailyrecord.pulseRate} onChange={onChange} style={{width: 700 }}/>

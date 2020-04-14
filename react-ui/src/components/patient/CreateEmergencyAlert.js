@@ -26,7 +26,7 @@ function CreateEmergencyAlert(props) {
     axios.post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/emergencies/')
+        props.history.push('/showEmergency/' + result.data._id)
       }).catch((error) => setShowLoading(false));
   };
 
@@ -42,15 +42,15 @@ function CreateEmergencyAlert(props) {
           <span className="sr-only">Loading...</span>
         </Spinner> 
       } 
-      <Jumbotron>
-    <h2>Emergency Alert! {props.match.params.email}</h2>
-        <Form onSubmit={saveEmergency}>
-          <Form.Group>
+      <Jumbotron >
+    <h3 style={{textAlign: "center", color: "green"}}>Send Us A Emergency Alert Whenever You Need Help!</h3>
+        <Form onSubmit={saveEmergency} style={{marginLeft: 380}}>
+          <Form.Group >
             <Form.Label> Emergency Code</Form.Label>
             <Form.Control type="text" name="emergencyCode" id="emergencyCode" placeholder="Enter emergency code" value={emergency.emergencyCode} onChange={onChange} style={{width: 700 }}/>
           </Form.Group>
           <Form.Group>
-            <Form.Label> Emeregncy Subject</Form.Label>
+            <Form.Label>Emeregncy Subject</Form.Label>
             <Form.Control type="text" name="emergencySubject" id="emergencySubject" placeholder="Enter emergency subject" value={emergency.emergencySubject} onChange={onChange} style={{width: 700 }}/>
           </Form.Group>
           <Form.Group>

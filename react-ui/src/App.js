@@ -23,6 +23,8 @@ import TryExercises from './components/patient/TryExercises';
 import Logo from './logo.png';
 
 import axios from 'axios';
+import ShowEmergencyAlert from './components/patient/ShowEmergencyAlert';
+import ShowRecordList from './components/patient/ShowRecordList';
 
 //
 function App() {
@@ -98,6 +100,8 @@ function App() {
               :
               <div></div>
             }
+
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -114,6 +118,8 @@ function App() {
         <Route render={() => < CreateDailyRecord />} path="/createDailyRecord/:email" />
         <Route render={() => <DailyRecordList />} path="/dailyrecords" />
         <Route render={() => < TryExercises />} path="/tryExercises" />
+        <Route render={() => < ShowEmergencyAlert />} path="/showEmergency/:id" />
+        <Route render={() => <ShowRecordList />} path="/dailyrecordlist/:email" />
 
 
       </div>
