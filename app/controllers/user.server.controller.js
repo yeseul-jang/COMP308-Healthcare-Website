@@ -97,7 +97,7 @@ exports.authenticate = function (req, res, next) {
 			if (bcrypt.compareSync(password, user.password)) {
 				// Create a new token with the user id in the payload
 				// and which expires 300 seconds after issue
-				const token = jwt.sign({ id: user._id, email: user.email, usertype: user.usertype, id: user._id }, jwtKey,
+				const token = jwt.sign({ id: user._id, email: user.email, usertype: user.usertype, id: user._id, firstName: user.firstname, lastName: user.lastname }, jwtKey,
 					{ algorithm: 'HS256', expiresIn: jwtExpirySeconds });
 				console.log('token:', token)
 				// set the cookie as the token string, with a similar max age as the token
@@ -150,11 +150,10 @@ exports.isSignedIn = (req, res) => {
 	}
 
 	// Finally, token is ok, return the userNumber given in the token
-	console.log("payload.usertype >> ", payload.usertype);
-	console.log("payload.email >> ", payload.email);
-	console.log("payload.id >> ", payload.id);
+
+	var fullName = payload.firstName + " " + payload.lastName;
 	
-	res.status(200).send({ screen: payload.usertype, email: payload.email, id:payload.id});
+	res.status(200).send({ screen: payload.usertype, email: payload.email, id:payload.id, fullName:fullName});
 }
 
 exports.signout = (req, res) => {
