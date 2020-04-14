@@ -20,6 +20,9 @@ import EmergencyAlertListAll from './components/nurse/EmergencyAlertList';
 import CreateDailyRecord from './components/patient/CreateDailyRecord';
 import DailyRecordList from './components/nurse/DailyRecordList';
 import TryExercises from './components/patient/TryExercises';
+import CheckSymptoms from './components/patient/CheckSymptoms';
+import AddSymptoms from './components/patient/AddSymptoms';
+import ViewTreatment from './components/patient/ViewTreatment';
 
 import Logo from './logo.png';
 
@@ -98,10 +101,20 @@ function App() {
             {screen === 'patient'
               ?
               <Nav.Link href="/tryExercises">Try Exercises</Nav.Link>
-              :
-              <div></div>
+              :<idv></idv>
             }
-
+            {screen === 'patient'
+              ?
+              <Nav.Link href="/checkSymptoms">Check Symptoms</Nav.Link>
+              :<idv></idv>
+              // <Nav.Link href="/addSymptoms"> Symptoms</Nav.Link>
+            }
+            {/* {screen === 'patient'
+              ?
+              <Nav.Link href="/viewTreatment">View Treatment</Nav.Link>
+              :
+              <idv></idv>
+            } */}
 
           </Nav>
         </Navbar.Collapse>
@@ -119,11 +132,13 @@ function App() {
         <Route render={() => < CreateDailyRecord />} path="/createDailyRecord/:email" />
         <Route render={() => <DailyRecordList />} path="/dailyrecords" />
         <Route render={() => < TryExercises />} path="/tryExercises" />
+        <Route render={() => < CheckSymptoms />} path="/checkSymptoms"/>
+        <Route render={() => < AddSymptoms />} path="/addSymptoms"/>
+        <Route render={() => < ViewTreatment />} path="/viewTreatment"/>
         <Route render={() => < ShowEmergencyAlert />} path="/showEmergency/:id" />
         <Route render={() => <ShowRecordList />} path="/dailyrecordlist/:email" />
         <Route render={() => < Confirmation />} path="/confirmation" />
         
-
 
       </div>
 
