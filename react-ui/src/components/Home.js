@@ -59,6 +59,20 @@ function Home(props) {
         fetchData();
     }, []); //only the first render
 
+
+  const createEmergency = (email) => {
+    props.history.push({
+      pathname: '/createEmergency/' + email
+    });
+  };
+
+  const createDailyrecord = (email) => {
+    props.history.push({
+      pathname: '/createDailyRecord/' + email
+    });
+  };
+
+
     return (
         <div>
             <div className="home">
@@ -80,18 +94,19 @@ function Home(props) {
                             </div>
                         </div>
                         :
-                        <div>
-                          
+                        <div>                          
                             <h5>We will help you to monitor</h5>
                             <h5>your daily activities!</h5>
                         </div>
                     }
                     <br />
                     {screen === 'patient'
-                        ?
-                        
-                            <View param={param} setParam={setParam}/>
-                            : <div></div>
+                        ?                        
+                        <div className="Buttons">
+                            <Button className="ButtonSpace" variant="warning" onClick={() => createEmergency( param)}>Send Emergency Alert</Button>
+                            <Button className="ButtonSpace" variant="info" onClick={() => createDailyrecord( param)}>Daily Health Self-Check</Button>
+                        </div>
+                        : <div></div>
                     }
                     <br />
                     

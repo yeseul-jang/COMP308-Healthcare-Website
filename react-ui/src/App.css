@@ -71,9 +71,10 @@
 }
 
 .home {
-  width: 68%;
-  height: 400px;
+  width: 80%;
+  height: 430px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .fullName {
