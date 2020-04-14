@@ -159,14 +159,14 @@ function InsertPatientVital(props) {
                             />
                         </div>
                         <div className="form-group row">
-                            <label htmlFor="name">Body pressure</label>
+                            <label htmlFor="name">Blood pressure</label>
                             <input
-                                type="number"
+                                type="text"
                                 className="form-control"
-                                id="bodypressure"
-                                name="bodypressure"
+                                id="bloodpressure"
+                                name="bloodpressure"
                                 placeholder="Only number is available"
-                                value={vital.bodypressure}
+                                value={vital.bloodpressure}
                                 onChange={onChange}
                                 required
                             />

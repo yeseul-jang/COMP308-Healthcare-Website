@@ -7,8 +7,11 @@ module.exports = function (app) {
 
     //
     app.route('/detailPatientInfo/:patient')
-        .get(vitals.readVitalInfo);
+        .get(vitals.readVitalInfo)
+
+    app.delete('/deletevital/:vitalId', vitals.delete);
 
     app.param('patient', vitals.vitalByPatientId);
+    app.param('vitalId',vitals.vitalByID);
 }
 
