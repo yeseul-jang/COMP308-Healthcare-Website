@@ -152,8 +152,9 @@ exports.isSignedIn = (req, res) => {
 	// Finally, token is ok, return the userNumber given in the token
 	console.log("payload.usertype >> ", payload.usertype);
 	console.log("payload.email >> ", payload.email);
+	console.log("payload.id >> ", payload.id);
 	
-	res.status(200).send({ screen: payload.usertype, email: payload.email});
+	res.status(200).send({ screen: payload.usertype, email: payload.email, id:payload.id});
 }
 
 exports.signout = (req, res) => {
