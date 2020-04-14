@@ -87,8 +87,9 @@ function App() {
         <Route render={() => < Login />} path="/login" />
         <Route render={() => < Registration />} path="/registration" />
         <Route render={() => < SearchPatient />} path="/searchPatient" />
-        <Route render={() => < InsertPatientVital />} path="/insertPatientVital" />
+        <Route render={() => < InsertPatientVital />} path="/savePatientVital/:id" />
         <Route render={() => < DetailPatientInfo />} path="/detailPatientInfo/:id" />
+
 
       </div>
 
