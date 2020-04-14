@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Table from 'react-bootstrap/Table';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
@@ -10,10 +10,6 @@ import Alert from 'react-bootstrap/Alert';
 function DetailPatientInfo(props) {
     const [data, setData] = useState([]);
     const [screen, setScreen] = useState('auth');
-    const [patientUsername, setPatientUsername] = useState();
-
-    // console.log('props.screen', props.screen);
-
     const [showLoading, setShowLoading] = useState(false);
     const apiUrl = "http://localhost:3000/detailPatientInfo/" + props.match.params.id;
 
@@ -31,8 +27,28 @@ function DetailPatientInfo(props) {
         setShowLoading(false);
         const fetchData = async () => {
             const result = await axios(apiUrl);
-            console.log('results from students' + result.data);
-            // setCurrentUser(res.data.id);
+            console.log('results from vitals' + result.data);
+
+            if(result.data == null) {
+                console.log("result.data is null!!");
+            }
+
+            setData(result.data.course);
+            /*
+            axios.get(apiUrl)
+              .then(result => {
+                console.log('result.data:',result.data)
+                //check if the user has logged in
+                if(result.data.screen !== 'auth')
+                {
+                  
+                  console.log('results from vitals', result.data)
+                  setData(result.data);
+                  setShowLoading(false);
+                }
+              }).catch((error) => {
+                console.log('error in fetchData:', error)
+              });*/
         };
         fetchData();
     }, []);
@@ -49,9 +65,7 @@ function DetailPatientInfo(props) {
             if (res.data.screen !== undefined) {
                 setScreen(res.data.screen);
                 console.log(res.data.screen)
-                console.log("username::" + res.data.username)
-                setPatientUsername(res.data.username)
-                
+
                 console.log("current user id: ", res.data.id);
                 setCurrentUserID(res.data.id);
             }
@@ -72,7 +86,7 @@ function DetailPatientInfo(props) {
 
         axios.post(apiUrlForSendingTip, data).then((result) => {
             console.log("RESULT >>>> ", result);
-            
+
             if (result.data.message != null) {
                 setMessage(result.data.message);
             }
@@ -93,22 +107,49 @@ function DetailPatientInfo(props) {
 
     return (
         <div>
+
             {message.length === 0
-            ?
+                ?
                 <div></div>
-            :
+                :
                 <div><Alert variant="success">{message}</Alert></div>
             }
 
-            <h2>Username: {patientUsername}</h2>
-            <ListGroup>
-                {data.map((item, idx) => (
-                    <ListGroup.Item key={idx} action >
-                        {item._id} / {item.bodytemperature} / {item.heartrate} / {item.bloodpressure} / {item.respiratoryrate}  / {item.visitedDate} / {item.patient}
+            <h2>Testing</h2>
+            
+            {data === ''
+                ?
+                    <div></div>
+                :           
+                    <div>
+                        <Table responsive>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Body Temperature</th>
+                                    <th scope="col">Heart Rate</th>
+                                    <th scope="col">Blood Pressure</th>
+                                    <th scope="col">Respiratory Rate</th>
+                                    <th scope="col">Visted Date</th>
+                                    <th scope="col">Patient</th>
 
-                    </ListGroup.Item>
-                ))}
-            </ListGroup>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.map((item, idx) => (
+                                    <tr>
+                                        <td>{item.bodytemperature}</td>
+                                        <td>{item.heartrate}</td>
+                                        <td>{item.bloodpressure}</td>
+                                        <td>{item.respiratoryrate}</td>
+                                        <td>{item.visitedDate}</td>
+                                        <td>{item.patient}</td>
+
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>     
+                </div>
+            }
 
 
             <>
@@ -122,7 +163,7 @@ function DetailPatientInfo(props) {
                         <Modal.Body>
                             <Form.Group>
                                 {/* <Form.Label>Example textarea</Form.Label> */}
-                                <Form.Control as="textarea" rows="5" id="tip" name="tip" onChange={onChange}/>
+                                <Form.Control as="textarea" rows="5" id="tip" name="tip" onChange={onChange} />
                             </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
