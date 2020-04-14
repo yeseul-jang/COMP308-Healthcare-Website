@@ -10,6 +10,8 @@ import Alert from 'react-bootstrap/Alert';
 function DetailPatientInfo(props) {
     const [data, setData] = useState([]);
     const [screen, setScreen] = useState('auth');
+    const [patientid, setId] = useState();
+    
     const [showLoading, setShowLoading] = useState(false);
     const apiUrl = "http://localhost:3000/detailPatientInfo/" + props.match.params.id;
 
@@ -32,7 +34,7 @@ function DetailPatientInfo(props) {
             if(result.data == null) {
                 console.log("result.data is null!!");
             }
-
+            setId(props.match.params.id);
             setData(result.data);
         };
         fetchData();
@@ -90,6 +92,13 @@ function DetailPatientInfo(props) {
         setTip({ ...tip, [e.target.name]: e.target.value });
     }
 
+    const newVital = (id) => {
+        console.log("check user id: " +id);
+        props.history.push({
+          pathname: '/savePatientVital/' + id
+        });
+      }
+
     return (
         <div>
 
@@ -132,7 +141,8 @@ function DetailPatientInfo(props) {
                                     </tr>
                                 ))}
                             </tbody>
-                        </Table>     
+                        </Table> 
+                        <Button  className="ButtonSpace" onClick={() => { newVital(patientid) }}>New Vital</Button>   
                 </div>
             }
 
