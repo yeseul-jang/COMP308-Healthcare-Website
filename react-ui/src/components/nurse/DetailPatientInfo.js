@@ -98,6 +98,35 @@ function DetailPatientInfo(props) {
           pathname: '/savePatientVital/' + id
         });
       }
+ const deleteVital = (id,bodytemperature,heartrate,bloodpressure,respiratoryrate,visitedDate) => {
+        console.log("check vital id: " + id);
+        console.log("check vital bodytemperature: " + bodytemperature);
+        console.log("check vital iheartrated: " + heartrate);
+        console.log("check vital bloodpressure: " + bloodpressure);
+        console.log("check vital respiratoryrate: " + respiratoryrate);
+        console.log("check vital visitedDate: " + visitedDate);
+
+        setShowLoading(true);
+        const apiUrl1 = "http://localhost:3000/deletevital/"+id;
+        const vital = {
+            _id:id,
+            bodytemperature:bodytemperature,
+            heartrate:heartrate,
+            bloodpressure:bloodpressure,
+            respiratoryrate:respiratoryrate,
+            visitedDate:visitedDate
+        };
+        console.log(">>1: " + data.visitedDate)
+       
+        axios.delete(apiUrl1, vital)
+            .then((result) => {
+                console.log("test");
+                setShowLoading(false);
+                window.location.reload(); 
+                props.history.pushState('/detailPatientInfo/' + props.match.params.id)
+            }).catch((error) => setShowLoading(false));
+    };
+
 
     return (
         <div className="vitalSign">
@@ -124,6 +153,7 @@ function DetailPatientInfo(props) {
                                     <th scope="col">Blood Pressure</th>
                                     <th scope="col">Respiratory Rate</th>
                                     <th scope="col">Visted Date</th>
+                                    <th></th>
                                     {/* <th scope="col">Patient</th> */}
 
                                 </tr>
@@ -136,6 +166,10 @@ function DetailPatientInfo(props) {
                                         <td>{item.bloodpressure}</td>
                                         <td>{item.respiratoryrate}</td>
                                         <td>{item.visitedDate}</td>
+                                        <td>
+                                        <Button className="ButtonSpace" onClick={() => { deleteVital(item._id,item.bodytemperature,item.heartrate,
+                                            item.bloodpressure,item.respiratoryrate,item.visitedDate) }}>Delete</Button>
+                                        </td>
                                         {/* <td>{item.patient}</td> */}
 
                                     </tr>
