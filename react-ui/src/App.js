@@ -14,6 +14,12 @@ import Registration from './components/Registration';
 import SearchPatient from './components/nurse/SearchPatient';
 import InsertPatientVital from './components/nurse/InsertPatientVital';
 import DetailPatientInfo from './components/nurse/DetailPatientInfo';
+import CreateEmergencyAlert from './components/patient/CreateEmergencyAlert';
+import EmergencyAlertList from './components/patient/EmergencyAlertList';
+import EmergencyAlertListAll from './components/nurse/EmergencyAlertList';
+import CreateDailyRecord from './components/patient/CreateDailyRecord';
+import DailyRecordList from './components/nurse/DailyRecordList';
+import TryExercises from './components/patient/TryExercises';
 
 import Logo from './logo.png';
 
@@ -75,7 +81,19 @@ function App() {
 
             {screen === 'nurse'               
               ?
-                <Nav.Link href="/searchPatient">Search Patient</Nav.Link>              
+              <div>
+                <Nav.Link href="/searchPatient">Search Patient</Nav.Link>
+                <Nav.Link href="/emergencies">Emergency Alert</Nav.Link> 
+                </div>             
+              :
+              <div>
+                <Nav.Link href="/createEmergency/:email" >Send Emergency Alert</Nav.Link>
+                <Nav.Link href="/createDailyRecord/:email" >Enter Daily Record</Nav.Link>
+              </div>
+            }
+            {screen === 'patient'               
+              ?
+                <Nav.Link href="/tryExercises">Try Exercises</Nav.Link>              
               :
               <div></div>
             }
@@ -90,6 +108,12 @@ function App() {
         <Route render={() => < SearchPatient />} path="/searchPatient" />
         <Route render={() => < InsertPatientVital />} path="/savePatientVital/:id" />
         <Route render={() => < DetailPatientInfo />} path="/detailPatientInfo/:id" />
+        <Route render ={()=> < CreateEmergencyAlert />} path="/createEmergency/:email" />
+        <Route render ={()=> <EmergencyAlertList />} path="/emergencylist/:email" />
+        <Route render ={()=> <EmergencyAlertListAll />} path="/emergencies" />
+        <Route render ={()=> < CreateDailyRecord />} path="/createDailyRecord/:email" />
+        <Route render ={()=> <DailyRecordList />} path="/dailyrecords" />
+        <Route render={() => < TryExercises />} path="/tryExercises" />
 
 
       </div>
