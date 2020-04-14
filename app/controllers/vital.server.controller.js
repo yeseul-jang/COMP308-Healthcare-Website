@@ -60,25 +60,30 @@ exports.list = function (req, res, next) {
 
 
 exports.readVitalInfo = function(req, res) {
-    // Use the 'response' object to send a JSON response
-    console.log(">>>>>>>>>>current :" + req.vitals)
+    console.log("readVitalInfo >>>>> ", req.vitals);
+
     res.status(200).json(req.vitals);
-	//res.json();
 };
 
 
-exports.vitalByPatientId = function(res,req,next,patient) {
+exports.vitalByPatientId = function(req, res, next, patient) {
     console.log(">>>>>>>IN>>>>>>");
     console.log(">>>>>>> vitalByPatientId>> patientId: "+ patient);
     
-    Vital.find({ patient: patient}, function (err, vitals) {
+    Vital.find({ patient: patient }, (err, vitals) => {
         if (err) {
-            console.log(" >>>", err);
+            console.log("err >>>", err);
             return next(err);
-        } else {
-            req.vitals = vitals;
-            console.log("vital >>>", req.vitals);
-            next();
-        }
+        }else {
+
+            console.log('>>>> vitals ', vitals);
+            if(vitals.length == 0) {
+                console.log("virtal is null");
+            }else {
+                req.vitals = vitals;
+                console.log("vitalByPatientId virtal: ", vitals);
+                next();
+            }
+        }     
     });
 };

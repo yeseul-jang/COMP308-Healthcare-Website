@@ -33,22 +33,7 @@ function DetailPatientInfo(props) {
                 console.log("result.data is null!!");
             }
 
-            setData(result.data.course);
-            /*
-            axios.get(apiUrl)
-              .then(result => {
-                console.log('result.data:',result.data)
-                //check if the user has logged in
-                if(result.data.screen !== 'auth')
-                {
-                  
-                  console.log('results from vitals', result.data)
-                  setData(result.data);
-                  setShowLoading(false);
-                }
-              }).catch((error) => {
-                console.log('error in fetchData:', error)
-              });*/
+            setData(result.data);
         };
         fetchData();
     }, []);
@@ -116,8 +101,8 @@ function DetailPatientInfo(props) {
             }
 
             <h2>Testing</h2>
-            
-            {data === ''
+
+            {data.length === 0
                 ?
                     <div></div>
                 :           
