@@ -102,7 +102,7 @@ exports.readEmergencies = function(req, res) {
 exports.emergencyByPatient = function (req, res, next, email) {
     Patient.findOne({email: email}, (err, patient) => {
         if(err) { return getErrorMessage(err);}
-        req.email = patient.email;
+        req.email = email;
         console.log(req.email);
     }).then(function () {
         Emergency.find({

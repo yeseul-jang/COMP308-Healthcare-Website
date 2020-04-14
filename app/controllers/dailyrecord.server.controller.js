@@ -34,7 +34,7 @@ const getErrorMessage = function(err) {
 exports.create = function (req, res, next, email) {
     Patient.findOne({email: email}, (err, patient) => {
         if(err) { return getErrorMessage(err);}
-        req.email = patient.email;
+        req.email = email;
         console.log(req.email);
     }).then(function () {
     // Create a new instance of the 'DailyRecord' Mongoose model
