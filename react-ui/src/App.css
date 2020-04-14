@@ -93,3 +93,32 @@
 .CardArea {
   text-align:center;
 }
+
+.searchForm {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.select {
+  width: 20%;
+  margin: 5px;
+}
+
+.searchTxt {
+  width: 60%;
+  margin: 5px;
+}
+
+.title {
+  text-align: center;
+  margin: 30px;
+}
+
+.searchBtn {
+  margin: 5px;
+}
+
+.vitalSign {
+  width: 70%;
+  margin: 0 auto;
+}
