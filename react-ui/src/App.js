@@ -71,26 +71,30 @@ function App() {
             <div><img className="logo" src={Logo} alt='website logo'></img></div>
             <Nav.Link href="/home">Home</Nav.Link>
 
-            {screen === 'auth' 
+            {screen === 'auth'
               ?
-                <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link href="/login">Login</Nav.Link>
               :
               <Nav.Link href="/home" onClick={deleteCookie}>Logout</Nav.Link>
             }
 
-            {screen === 'nurse'               
+            {screen === 'nurse'
               ?
-           <div>
                 <Nav.Link href="/searchPatient">Search Patient</Nav.Link>
-                <Nav.Link href="/emergencies">Emergency Alert</Nav.Link> 
-                </div>
-          
-              :<idv></idv>
 
+              : <idv></idv>
             }
-            {screen === 'patient'               
+
+            {screen === 'nurse'
               ?
-                <Nav.Link href="/tryExercises">Try Exercises</Nav.Link>              
+                <Nav.Link href="/emergencies">Emergency Alert</Nav.Link>
+
+              : <idv></idv>
+            }
+
+            {screen === 'patient'
+              ?
+              <Nav.Link href="/tryExercises">Try Exercises</Nav.Link>
               :
               <div></div>
             }
@@ -105,10 +109,10 @@ function App() {
         <Route render={() => < SearchPatient />} path="/searchPatient" />
         <Route render={() => < InsertPatientVital />} path="/savePatientVital/:id" />
         <Route render={() => < DetailPatientInfo />} path="/detailPatientInfo/:id" />
-        <Route render ={()=> < CreateEmergencyAlert />} path="/createEmergency/:email" />
-        <Route render ={()=> <EmergencyAlertListAll />} path="/emergencies" />
-        <Route render ={()=> < CreateDailyRecord />} path="/createDailyRecord/:email" />
-        <Route render ={()=> <DailyRecordList />} path="/dailyrecords" />
+        <Route render={() => < CreateEmergencyAlert />} path="/createEmergency/:email" />
+        <Route render={() => <EmergencyAlertListAll />} path="/emergencies" />
+        <Route render={() => < CreateDailyRecord />} path="/createDailyRecord/:email" />
+        <Route render={() => <DailyRecordList />} path="/dailyrecords" />
         <Route render={() => < TryExercises />} path="/tryExercises" />
 
 
