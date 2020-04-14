@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-<<<<<<< HEAD
 import homeImg from './home.png';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-=======
-import View from './View'
->>>>>>> b1309673946de7d178893507f01776aab11317d6
 
 function Home(props) {
     const [screen, setScreen] = useState('auth');
@@ -63,7 +59,6 @@ function Home(props) {
 
     return (
         <div>
-<<<<<<< HEAD
             <div className="home">
                 {/* <h1>HOME: {screen}</h1> */}
 
@@ -133,19 +128,6 @@ function Home(props) {
                 <div></div>
             }
 
-=======
-          {screen === 'patient'
-          ?
-          <View/>
-          :
-          <div>
-            <h1>HOME: {screen}</h1>
-            <h2> Hero Healthcare Website</h2>
-            <p> created by Hero Group</p>
-          </div>
-        }
-            
->>>>>>> b1309673946de7d178893507f01776aab11317d6
         </div>
     );
 
