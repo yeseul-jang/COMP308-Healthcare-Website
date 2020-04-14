@@ -19,6 +19,7 @@ import EmergencyAlertList from './components/patient/EmergencyAlertList';
 import EmergencyAlertListAll from './components/nurse/EmergencyAlertList';
 import CreateDailyRecord from './components/patient/CreateDailyRecord';
 import DailyRecordList from './components/nurse/DailyRecordList';
+import TryExercises from './components/patient/TryExercises';
 
 
 
@@ -89,6 +90,12 @@ function App() {
                 <Nav.Link href="/createDailyRecord/:email" >Enter Daily Record</Nav.Link>
               </div>
             }
+            {screen === 'patient'               
+              ?
+                <Nav.Link href="/tryExercises">Try Exercises</Nav.Link>              
+              :
+              <div></div>
+            }
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -105,6 +112,7 @@ function App() {
         <Route render ={()=> <EmergencyAlertListAll />} path="/emergencies" />
         <Route render ={()=> < CreateDailyRecord />} path="/createDailyRecord/:email" />
         <Route render ={()=> <DailyRecordList />} path="/dailyrecords" />
+        <Route render={() => < TryExercises />} path="/tryExercises" />
 
 
       </div>
