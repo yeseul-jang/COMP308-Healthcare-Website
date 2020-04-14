@@ -83,8 +83,7 @@ function View(props) {
           <Button className="ButtonSpace" variant="warning" onClick={deleteCookie}>Log out</Button>
         </div>
         : <div>
-        <h2>Welcome back, { param}</h2>
-        <p>{data}</p>
+
         <button onClick={() => createEmergency( param)}>Send Emergency Alert</button>
         {/* <button onClick={() => viewPatient(screen)}>View My Account Details</button> */}
         <button onClick={() => createDailyrecord( param)}>Daily Health Self-Check</button>
