@@ -82,11 +82,20 @@ function Home(props) {
                         </div>
                         :
                         <div>
+                          
                             <h5>We will help you to monitor</h5>
                             <h5>your daily activities!</h5>
                         </div>
                     }
                     <br />
+                    {screen === 'patient'
+                        ?
+                        
+                            <View param={param} setParam={setParam}/>
+                            : <div></div>
+                    }
+                    <br />
+                    
 
                     {screen === 'auth'
                         ?
@@ -107,7 +116,6 @@ function Home(props) {
 
             {screen === 'patient' && dailyTips.length !== 0
                 ?
-                <div>
                 <div className="dailyTips">
                     <br /><br /><br /><br/>
                     <h4><b>Check the daily motivational tips from nurses!</b></h4>
@@ -127,8 +135,7 @@ function Home(props) {
                         ))}
                     </div>
                 </div>
-                <View param={param} setParam={setParam}/>
-                </div>
+                
 
                 :
                 <div></div>
