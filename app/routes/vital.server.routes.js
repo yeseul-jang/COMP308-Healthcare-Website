@@ -8,8 +8,7 @@ module.exports = function (app) {
         .post(users.requiresLogin, vitals.insertVitalSigns)
 
     //
-    app.route('/detailPatientInfo/:patient')
-    .get(vitals.list)
+    app.route('/detailPatientInfo/:patient').get(vitals.readVitalInfo);
 
     app.param('patient',vitals.vitalByPatientId);
 }
