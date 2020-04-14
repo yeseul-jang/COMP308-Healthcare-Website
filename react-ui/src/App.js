@@ -20,7 +20,7 @@ import CreateDailyRecord from './components/patient/CreateDailyRecord';
 import DailyRecordList from './components/nurse/DailyRecordList';
 import TryExercises from './components/patient/TryExercises';
 
-
+import Logo from './logo.png';
 
 import axios from 'axios';
 
@@ -68,6 +68,7 @@ function App() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+            <div><img className="logo" src={Logo} alt='website logo'></img></div>
             <Nav.Link href="/home">Home</Nav.Link>
 
             {screen === 'auth' 

@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const Tip = require('mongoose').model('Tip');
 
 
@@ -27,4 +26,33 @@ exports.sendTip = function(req, res) {
             });
         }
     });
+};
+
+
+exports.read = function(req, res) {
+    console.log("read >>>>> ", req.tips);
+
+    res.status(200).json(req.tips);
+};
+
+
+exports.tipByPatientId = function(req, res, next, patientId) {
+    console.log(">>>>>>> tipByPatientId " + patientId);
+    
+    Tip.find({ patient: patientId }, (err, tips) => {
+        if (err) {
+            console.log("err >>>", err);
+            return next(err);
+        }else {
+
+            console.log('>>>> tips ', tips);
+            if(tips.length == 0) {
+                console.log("tips is null");
+            }else {
+                req.tips = tips;
+                console.log("tipByPatientId tips: ", tips);
+                next();
+            }
+        }     
+    }).sort({timestamp: -1}).limit(3).populate('nurse');
 };

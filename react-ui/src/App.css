@@ -50,3 +50,46 @@
 .ButtonSpace {
   margin: 4px;
 }
+
+.logo {
+  width:130px;
+}
+
+.homeImg {
+  width:550px;
+}
+
+.homeRight {
+  margin-top:100px;
+  float: right;
+}
+
+.homeLeft {
+  margin-top:130px;
+  float: left;
+  margin-bottom:120px;
+}
+
+.home {
+  width: 68%;
+  height: 400px;
+  margin: 0 auto;
+}
+
+.fullName {
+  color:blue;
+}
+
+.dailyTips {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tipCard {
+  display: inline-block;
+  margin:0 auto;
+}
+
+.CardArea {
+  text-align:center;
+}
