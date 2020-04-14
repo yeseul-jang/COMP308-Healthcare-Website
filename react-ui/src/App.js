@@ -15,7 +15,7 @@ import SearchPatient from './components/nurse/SearchPatient';
 import InsertPatientVital from './components/nurse/InsertPatientVital';
 import DetailPatientInfo from './components/nurse/DetailPatientInfo';
 
-
+import Logo from './logo.png';
 
 import axios from 'axios';
 
@@ -63,6 +63,7 @@ function App() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+            <div><img className="logo" src={Logo} alt='website logo'></img></div>
             <Nav.Link href="/home">Home</Nav.Link>
 
             {screen === 'auth' 
