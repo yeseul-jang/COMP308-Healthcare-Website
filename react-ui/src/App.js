@@ -18,6 +18,7 @@ import CreateEmergencyAlert from './components/patient/CreateEmergencyAlert';
 import EmergencyAlertListAll from './components/nurse/EmergencyAlertList';
 import CreateDailyRecord from './components/patient/CreateDailyRecord';
 import DailyRecordList from './components/nurse/DailyRecordList';
+import TryExercises from './components/patient/TryExercises';
 
 
 
@@ -86,16 +87,12 @@ function App() {
               :<idv></idv>
 
             }
-
-            {/* {screen === 'patient'
-             ? 
-             <div>
-             <Nav.Link href="/createEmergency/${props.match.params.email}">Send Emergency Alert</Nav.Link>
-             <Nav.Link href="/createDailyRecord/:email" >Enter Daily Record</Nav.Link>
-             </div>
-             :<div></div>
-            } */}
-
+            {screen === 'patient'               
+              ?
+                <Nav.Link href="/tryExercises">Try Exercises</Nav.Link>              
+              :
+              <div></div>
+            }
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -111,6 +108,7 @@ function App() {
         <Route render ={()=> <EmergencyAlertListAll />} path="/emergencies" />
         <Route render ={()=> < CreateDailyRecord />} path="/createDailyRecord/:email" />
         <Route render ={()=> <DailyRecordList />} path="/dailyrecords" />
+        <Route render={() => < TryExercises />} path="/tryExercises" />
 
 
       </div>
