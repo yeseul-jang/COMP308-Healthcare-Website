@@ -71,13 +71,6 @@ function App() {
               :
               <Nav.Link href="/home" onClick={deleteCookie}>Logout</Nav.Link>
             }
-            
-            {screen === 'nurse' 
-              ?
-                <Nav.Link href="/insertPatientVital">Insert Patient Vital</Nav.Link>
-              :
-              <div></div>
-            }
 
             {screen === 'nurse'               
               ?

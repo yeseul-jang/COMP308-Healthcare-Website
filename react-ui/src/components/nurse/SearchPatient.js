@@ -27,7 +27,7 @@ function SearchPatient(props) {
             // 
             if (res.data.screen !== undefined) {
                 setScreen(res.data.screen);
-                console.log(res.data.screen)
+                console.log(res.data.screen);
             }
         } catch (e) {
             setScreen('auth');
