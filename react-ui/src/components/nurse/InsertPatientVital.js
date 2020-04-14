@@ -65,7 +65,7 @@ function Registration(props) {
         axios.post(apiUrl, data)
             .then((result) => {
                 setShowLoading(false);
-                console.log("what is>>>" + props.match.params.id) // passing patient Id
+                console.log("what is>>>" + result.data._id) // passing patient Id
                 props.history.push('/detailPatientInfo/' + props.match.params.id)
                 
             }).catch((error) => setShowLoading(false));
@@ -78,6 +78,12 @@ function Registration(props) {
         console.log(e.target.value)
         setVital({ ...vital, [e.target.name]: e.target.value });
     }
+    const goback = (id) => {
+        console.log("check user id: " +id);
+        props.history.push({
+          pathname: '/savePatientVital/' + id
+        });
+      }
 
 
 
@@ -90,40 +96,48 @@ function Registration(props) {
             }
 
             <div className="App">
-                <br></br>
+            <br></br>
+                <h2> Register a New Vital Signs</h2>
+                
 
                 <form className="signUpForm" onSubmit={saveUser}>
                     <div className="form-group row">
                         <label htmlFor="name">Body Temperature</label>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="bodytemperature"
                             name="bodytemperature"
+                            placeholder="Only number is available"
                             value={vital.bodytemperature}
                             onChange={onChange}
+                            required
                         />
                     </div>
                     <div className="form-group row">
                         <label htmlFor="name">Heart Rate</label>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="heartrate"
                             name="heartrate"
+                            placeholder="Only number is available"
                             value={vital.heartrate}
                             onChange={onChange}
+                            required
                         />
                     </div>
                     <div className="form-group row">
                         <label htmlFor="name">Body pressure</label>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="bodypressure"
                             name="bodypressure"
+                            placeholder="Only number is available"
                             value={vital.bodypressure}
                             onChange={onChange}
+                            required
                         />
                     </div>
                     <div className="form-group row">
@@ -133,8 +147,10 @@ function Registration(props) {
                             className="form-control"
                             id="respiratoryrate"
                             name="respiratoryrate"
+                            placeholder="Only number is available"
                             value={vital.respiratoryrate}
                             onChange={onChange}
+                            required
                         />
                     </div>
                     <div className="form-group row">
@@ -144,15 +160,21 @@ function Registration(props) {
                             className="form-control"
                             id="visitedDate"
                             name="visitedDate"
+                            placeholder="yyyy-mm-dd"
                             value={vital.visitedDate}
                             onChange={onChange}
+                            required
 
                         />
                     </div>
-
-                    <button type="submit" className="btn btn-primary btn-block">
+                   
+                    <button type="submit" className="btn btn-info btn-block">
                         Submit
                      </button>
+                     <button  className="btn btn-success btn-block "  onClick={() => { goback(patientUsername) }}>
+                        Cancel
+                     </button>
+                     
                 </form>
             </div>
         </div>
