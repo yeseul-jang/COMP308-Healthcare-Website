@@ -47,7 +47,7 @@ function EmergencyAlertList(props) {
             <tbody>
             {data.map((item, idx) => (
               <tr key={idx}>
-            <td className="App-td" action onClick={() => { showDetail(item._id) }}>{item.emergencyCode}</td>
+            <td >{item.emergencyCode}</td>
             <td>{item.emergencySubject}</td>
             <td>{item.description}</td>
             <td>{item.contactName}</td>
