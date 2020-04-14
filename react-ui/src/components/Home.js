@@ -6,6 +6,7 @@ import View from './View'
 function Home(props)
 {
     const [screen, setScreen] = useState('auth');
+    const [param, setParam] = useState()
 
     //check if the user already logged-in
     const readCookie = async () => {
@@ -17,8 +18,9 @@ function Home(props)
         // 
         if (res.data.screen !== undefined) {
           setScreen(res.data.screen);
+          setParam(res.data.email);
           console.log(res.data.screen)
-          console.log(res.data.username)
+          console.log(res.data.email)
         }
       } catch (e) {
         setScreen('auth');
@@ -35,7 +37,7 @@ function Home(props)
         <div>
           {screen === 'patient'
           ?
-          <View/>
+          <View param={param} setParam={setParam}/>
           :
           <div>
             <h1>HOME: {screen}</h1>

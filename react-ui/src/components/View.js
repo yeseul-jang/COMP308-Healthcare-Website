@@ -13,7 +13,7 @@ import axios from 'axios';
 function View(props) {
   // read the info from props, coming from the ancestor component
   const { screen, setScreen } = props;
-  // const { type, setType } = props;
+  const { param, setParam } = props;
   // const {patientData, setPatientData} =props;
 
   // return a stateful value and funcion to update it
@@ -83,11 +83,11 @@ function View(props) {
           <Button className="ButtonSpace" variant="warning" onClick={deleteCookie}>Log out</Button>
         </div>
         : <div>
-        <h2>Welcome back, { props.match.params.email}</h2>
+        <h2>Welcome back, { param}</h2>
         <p>{data}</p>
-        <button onClick={() => createEmergency( props.match.params.email)}>Send Emergency Alert</button>
+        <button onClick={() => createEmergency( param)}>Send Emergency Alert</button>
         {/* <button onClick={() => viewPatient(screen)}>View My Account Details</button> */}
-        <button onClick={() => createDailyrecord( props.match.params.email)}>Daily Health Self-Check</button>
+        <button onClick={() => createDailyrecord( param)}>Daily Health Self-Check</button>
       </div>
       }
     </div>
