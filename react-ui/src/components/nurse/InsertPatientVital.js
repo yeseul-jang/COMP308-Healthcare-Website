@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
 import { withRouter } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 import '../Registration.css'
 
@@ -32,7 +33,7 @@ function Registration(props) {
                 setScreen(res.data.screen);
                 console.log(res.data.screen)
                 console.log("username::" + res.data.username)
-                setPatientUsername(res.data.username)
+                setPatientUsername(props.match.params.id)
             }
         } catch (e) {
             setScreen('auth');
@@ -50,9 +51,10 @@ function Registration(props) {
 
     const saveUser = (e) => {
         setShowLoading(true);
+        console.log(">>>test id :::"+props.match.params.id)
         e.preventDefault();
         const data = {
-            patientUsername: '5e940a884cb8b2c965ceb472',
+            patientUsername: patientUsername,
             bodytemperature: vital.bodytemperature,
             heartrate: vital.heartrate,
             bloodpressure: vital.bloodpressure,
@@ -67,6 +69,7 @@ function Registration(props) {
                 props.history.push('/detailPatientInfo/' + result.data._id)
                 
             }).catch((error) => setShowLoading(false));
+         
     };
 
 

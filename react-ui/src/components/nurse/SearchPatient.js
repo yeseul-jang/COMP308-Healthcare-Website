@@ -73,6 +73,12 @@ function SearchPatient(props) {
         setSearch({ ...search, [e.target.name]: e.target.value });
     }
 
+    const newVital = (id) => {
+      console.log("check user id: " +id);
+      props.history.push({
+        pathname: '/savePatientVital/' + id
+      });
+    }
     const detail = (id) => {
       console.log("check user id: " +id);
       props.history.push({
@@ -129,6 +135,7 @@ function SearchPatient(props) {
                                 <th scope="col">Phone Number</th>
                                 <th scope="col">Date Of Birth</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -142,6 +149,9 @@ function SearchPatient(props) {
                                     <td>{item.dateOfbirth}</td>
                                     <td>
                                         <Button  className="ButtonSpace" onClick={() => { detail(item._id) }}>Detail</Button>
+                                    </td>
+                                     <td>
+                                        <Button  className="ButtonSpace" onClick={() => { newVital(item._id) }}>New Vital</Button>
                                     </td>
                                 </tr>
                             ))}
