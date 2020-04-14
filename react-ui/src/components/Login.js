@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import View from './View'
 
 function Login(props) {
   //state variable for the screen, admin or user
@@ -32,7 +33,7 @@ function Login(props) {
         setEmail(res.data.email)
         console.log("test>>>>>"+res.data.screen);
 
-        props.history.push('/home');
+        props.history.push('/home/' + email);
         window.location.reload(false);
       }
     } catch (e) { //print the error
@@ -94,7 +95,17 @@ function Login(props) {
           </Form>
 
           : 
-          <div></div>
+          <div>
+            {/* {screen === 'patient'
+            ?
+            <div> <View/></div>
+            : <div> */}
+         
+            {/* </div>
+          } */}
+
+          </div>
+
         }
       </div>
     </div>
