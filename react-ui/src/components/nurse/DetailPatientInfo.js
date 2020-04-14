@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Table from 'react-bootstrap/Table';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 function DetailPatientInfo(props) {
     const [data, setData] = useState([]);
     const [screen, setScreen] = useState('auth');
-    const [patientUsername, setPatientUsername] = useState();
-
-    console.log('props.screen', props.screen);
-
+ 
+   
     const [showLoading, setShowLoading] = useState(false);
     const apiUrl = "http://localhost:3000/detailPatientInfo/" + props.match.params.id;;
 
@@ -19,9 +17,25 @@ function DetailPatientInfo(props) {
         setShowLoading(false);
         const fetchData = async () => {
             const result = await axios(apiUrl);
-            console.log('results from students' + result.data);
-            setData(result.data);
-        };
+            console.log('results from vitals'+ result.data);
+            setData(result.data.course);
+            /*
+            axios.get(apiUrl)
+              .then(result => {
+                console.log('result.data:',result.data)
+                //check if the user has logged in
+                if(result.data.screen !== 'auth')
+                {
+                  
+                  console.log('results from vitals', result.data)
+                  setData(result.data);
+                  setShowLoading(false);
+                }
+              }).catch((error) => {
+                console.log('error in fetchData:', error)
+              });*/  
+            };
+            
         fetchData();
     }, []);
 
@@ -37,8 +51,7 @@ function DetailPatientInfo(props) {
             if (res.data.screen !== undefined) {
                 setScreen(res.data.screen);
                 console.log(res.data.screen)
-                console.log("username::" + res.data.username)
-                setPatientUsername(res.data.username)
+                
             }
         } catch (e) {
             setScreen('auth');
@@ -47,15 +60,34 @@ function DetailPatientInfo(props) {
     };
     return (
         <div>
-            <h2>Username: {patientUsername}</h2>
-            <ListGroup>
-                {data.map((item, idx) => (
-                    <ListGroup.Item key={idx} action >
-                        {item._id} / {item.bodytemperature} / {item.heartrate} / {item.bloodpressure} / {item.respiratoryrate}  / {item.visitedDate} / {item.patient}
-
-                    </ListGroup.Item>
-                ))}
-            </ListGroup>
+            <h2>Testing</h2>
+ 
+            <Table responsive>
+                        <thead>
+                            <tr>
+                                <th scope="col">Body Temperature</th>
+                                <th scope="col">Heart Rate</th>
+                                <th scope="col">Blood Pressure</th>
+                                <th scope="col">Respiratory Rate</th>
+                                <th scope="col">Visted Date</th>
+                                <th scope="col">Patient</th>
+                        
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.map((item, idx) => (
+                                <tr>
+                                    <td>{item.bodytemperature}</td>
+                                    <td>{item.heartrate}</td>
+                                    <td>{item.bloodpressure}</td>
+                                    <td>{item.respiratoryrate}</td>
+                                    <td>{item.visitedDate}</td>
+                                    <td>{item.patient}</td>
+                            
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
         </div>
     );
 
