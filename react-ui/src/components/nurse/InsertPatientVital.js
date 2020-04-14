@@ -65,8 +65,8 @@ function Registration(props) {
         axios.post(apiUrl, data)
             .then((result) => {
                 setShowLoading(false);
-                console.log("what is>>>" + result.data._id) // passing patient Id
-                props.history.push('/detailPatientInfo/' + result.data._id)
+                console.log("what is>>>" + props.match.params.id) // passing patient Id
+                props.history.push('/detailPatientInfo/' + props.match.params.id)
                 
             }).catch((error) => setShowLoading(false));
          
