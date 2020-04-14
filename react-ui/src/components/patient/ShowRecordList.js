@@ -75,6 +75,17 @@ function DailyRecordList(props) {
       </Table>
 
       <br/>
+      <div className="statusInfo">        
+        <h5 className="title"><b>Your health records should be following like this:</b></h5>
+        <div className="listTxt">
+          <li><b>Pulse Rate</b>: 60 to 80 beats per minute</li>
+          <li><b>Blood Pressure</b>: less than 120/80 mm Hg</li>
+          <li><b>Temperature</b>: 97.8º to 99.1º</li>
+          <li><b>Respiratory Rate</b>: 12 to 20 breaths per minute</li>
+        </div>
+      </div>
+
+      <br/><br/>
       <div className="Buttons">
         <OverlayTrigger
           key='right'

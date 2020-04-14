@@ -129,3 +129,11 @@
   margin: 0 auto;
   text-align: center;
 }
+.statusInfo {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.listTxt {
+  margin-left: 55px;
+}
