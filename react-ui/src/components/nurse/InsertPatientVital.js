@@ -112,7 +112,7 @@ function InsertPatientVital(props) {
         const goback = (id) => {
             console.log("check user id: " + id);
             props.history.push({
-                pathname: '/savePatientVital/' + id
+                pathname: '/detailPatientInfo/' + id
             });
         };
 
