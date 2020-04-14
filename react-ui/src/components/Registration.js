@@ -187,12 +187,12 @@ function Registration(props) {
                 <div><label className="form-group" htmlFor="">User Type</label> </div>
                     <div className="form-control">
                         <div className=" col-sm-2 form-check form-check-inline">
-                            <input className="form-check-input" name="usertype" type="radio" id="inlineCheckbox1" value="nurse" onChange={onChange} />
-                            <label className="form-check-label" for="inlineCheckbox1">Nurse</label>
+                            <input required className="form-check-input" name="usertype" type="radio" id="inlineCheckbox1" value="nurse" onChange={onChange} />
+                            <label className="form-check-label" for="inlineCheckbox1" >Nurse</label>
                         </div>
                         <div className="col-sm-2 form-check form-check-inline">
-                            <input className="form-check-input" name="usertype" type="radio" id="inlineCheckbox1" value="patient" onChange={onChange} />
-                            <label className="form-check-label" for="inlineCheckbox1">Patient</label>
+                            <input required className="form-check-input" name="usertype" type="radio" id="inlineCheckbox1" value="patient" onChange={onChange} />
+                            <label className="form-check-label" for="inlineCheckbox1" > Patient</label>
                         </div> 
                     </div><br></br>
                     <div className="form-group row">
@@ -206,6 +206,7 @@ function Registration(props) {
                             name="email"
                             value={user.email}
                             onChange={validateEmail}
+                            required
 
                         />
                     </div>
@@ -219,6 +220,7 @@ function Registration(props) {
                             name="password"
                             value={user.password}
                             onChange={validatePassword}
+                            required
 
                         />
                     </div>
@@ -232,6 +234,7 @@ function Registration(props) {
                             placeholder="First Name"
                             value={user.firstname}
                             onChange={onChange}
+                            required
                         />
                     </div>
                     <div className="form-group row">
@@ -244,6 +247,7 @@ function Registration(props) {
                             placeholder="Last Name"
                             value={user.lastname}
                             onChange={validateLastname}
+                            required
                         />
                     </div>
                     <div className="form-group row">
@@ -256,6 +260,7 @@ function Registration(props) {
                             value={user.dateOfbirth}
                             placeholder="ex) YYYY-MM-DD"
                             onChange={validateDate}
+                            required
                         />
                     </div>                    
                     <div className="form-group row">
@@ -268,6 +273,7 @@ function Registration(props) {
                             name="phoneNumber"
                             value={user.phoneNumber}
                             onChange={validatePhoneNumber}
+                            required
 
                         />
                     </div>
@@ -282,6 +288,7 @@ function Registration(props) {
                             name="address"
                             value={user.address}
                             onChange={validateAddress}
+                            required
                         />
                     </div>
                     <div className="form-group row">
@@ -295,6 +302,7 @@ function Registration(props) {
                             name="city"
                             value={user.city}
                             onChange={validateCity}
+                            required
                         />
 
                         <label className="col-md-2" htmlFor="">Postal Code</label>
@@ -307,6 +315,7 @@ function Registration(props) {
                             name="postalCode"
                             value={user.postalCode}
                             onChange={validatePostalCode}
+                            required
                         />
                     </div>
                     <button type="submit" className="btn btn-primary btn-block">
