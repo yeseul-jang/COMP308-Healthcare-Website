@@ -56,7 +56,7 @@ function Registration(props) {
 
         axios.post(apiUrl, data).then((result) => {
             setShowLoading(false);
-            props.history.push('/' + result.data._id)
+            props.history.push('/confirmation')
         }).catch((error) => {
             console.log("error >>> ", error);
             setShowLoading(false)}
@@ -215,7 +215,7 @@ function Registration(props) {
                             type="password"
                             className={`form-control ${inputClassNameHelper(isEnteredPasswordValid())}`}
                             id="passwordInput"
-                            placeholder="Please use strong password"
+                            placeholder="Password needs to set over 3 letters "
                             name="password"
                             value={user.password}
                             onChange={validatePassword}
@@ -229,6 +229,7 @@ function Registration(props) {
                             className={`form-control ${inputClassNameHelper(isEnteredFirstNameValid())}`}
                             id="firstname"
                             name="firstname"
+                            placeholder="First Name"
                             value={user.firstname}
                             onChange={onChange}
                         />
@@ -240,6 +241,7 @@ function Registration(props) {
                             className={`form-control ${inputClassNameHelper(isEnteredLastNameValid())}`}
                             id="lastname"
                             name="lastname"
+                            placeholder="Last Name"
                             value={user.lastname}
                             onChange={validateLastname}
                         />
@@ -252,7 +254,7 @@ function Registration(props) {
                             id="dateOfbirth"
                             name="dateOfbirth"
                             value={user.dateOfbirth}
-                            placeholder="ex) 1994-08-25"
+                            placeholder="ex) YYYY-MM-DD"
                             onChange={validateDate}
                         />
                     </div>                    

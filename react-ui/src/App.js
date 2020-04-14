@@ -10,6 +10,7 @@ import './App.css';
 
 import Home from './components/Home';
 import Login from './components/Login';
+import Confirmation from './components/Confirmation'
 import Registration from './components/Registration';
 import SearchPatient from './components/nurse/SearchPatient';
 import InsertPatientVital from './components/nurse/InsertPatientVital';
@@ -114,6 +115,8 @@ function App() {
         <Route render={() => < CreateDailyRecord />} path="/createDailyRecord/:email" />
         <Route render={() => <DailyRecordList />} path="/dailyrecords" />
         <Route render={() => < TryExercises />} path="/tryExercises" />
+        <Route render={() => < Confirmation />} path="/confirmation" />
+        
 
 
       </div>
