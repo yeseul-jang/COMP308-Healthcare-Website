@@ -4,7 +4,6 @@ import axios from 'axios';
 import homeImg from './home.png';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import View from './View'
 
 function Home(props) {
     const [screen, setScreen] = useState('auth');

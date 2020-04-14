@@ -4,6 +4,7 @@ import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 import Home from '../Home';
 
@@ -93,31 +94,34 @@ function SearchPatient(props) {
                 ?
                 <Home screen={screen} setScreen={setScreen} />
                 :
-                <div>
-                    <h2>Search Patient: {screen}</h2>
+                <div className="searchForm">
+                    <h2 className="title">Search Your Patient !</h2>
 
-                    <form onSubmit={searchPatient}>
+                    <Form onSubmit={searchPatient}>
+                        <Form.Group>
+                            <Form.Row>
+                                <Form.Control className="select" as="select" id="type" name="type" onChange={onChange}>
+                                    <option value="id">ID</option>
+                                    <option value="firstName">First Name</option>
+                                    <option value="lastName">Last Name</option>
+                                    <option value="email">Email Address</option>
+                                    <option value="dateOfBirth">Date Of Birth</option>
+                                </Form.Control>
+                                <Form.Control type="text" className="searchTxt" id="str" name="str" onChange={onChange} />
 
-                        <select id="type" name="type" onChange={onChange}>
-                            <option value="id">ID</option>
-                            <option value="firstName">First Name</option>
-                            <option value="lastName">Last Name</option>
-                            <option value="email">Email Address</option>
-                            <option value="dateOfBirth">Date Of Birth</option>
-                        </select>
-
-                        <input type="text" id="str" name="str" onChange={onChange} />
-
-                        <button type="submit">Search</button>
-                    </form>
+                                <Button type="submit" className="searchBtn">Search</Button>
+                            </Form.Row>
+                        </Form.Group>
+                    </Form>
                 </div>
             }
 
-            <br/><br/><br/>
+            <br/>
+
             {result.length !== 0
                 ?
-                <div>
-                    <h2 className="Title">Patient Search Result</h2>
+                <div className="searchForm">
+                    <h4 className="title">Patient Search Result</h4>
                     <br />
                     <br />
                     <Table responsive>
@@ -151,7 +155,7 @@ function SearchPatient(props) {
                         </tbody>
                     </Table>
                     <br />
-                    <h5 className="Title">Total: {result.length}</h5>
+                    <h5 className="title">Total: {result.length}</h5>
                 </div>
                 :
                 <div></div>

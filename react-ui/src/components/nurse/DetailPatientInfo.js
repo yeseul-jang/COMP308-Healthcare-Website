@@ -100,7 +100,7 @@ function DetailPatientInfo(props) {
       }
 
     return (
-        <div>
+        <div className="vitalSign">
 
             {message.length === 0
                 ?
@@ -109,7 +109,7 @@ function DetailPatientInfo(props) {
                 <div><Alert variant="success">{message}</Alert></div>
             }
 
-            <h2>Testing</h2>
+            <h2 className="title">Vital Signs</h2>
 
             {data.length === 0
                 ?
@@ -124,7 +124,7 @@ function DetailPatientInfo(props) {
                                     <th scope="col">Blood Pressure</th>
                                     <th scope="col">Respiratory Rate</th>
                                     <th scope="col">Visted Date</th>
-                                    <th scope="col">Patient</th>
+                                    {/* <th scope="col">Patient</th> */}
 
                                 </tr>
                             </thead>
@@ -136,20 +136,22 @@ function DetailPatientInfo(props) {
                                         <td>{item.bloodpressure}</td>
                                         <td>{item.respiratoryrate}</td>
                                         <td>{item.visitedDate}</td>
-                                        <td>{item.patient}</td>
+                                        {/* <td>{item.patient}</td> */}
 
                                     </tr>
                                 ))}
                             </tbody>
                         </Table> 
-                        <Button  className="ButtonSpace" onClick={() => { newVital(patientid) }}>New Vital</Button>   
-                </div>
+                </div>  
             }
 
+            <br/><br/>
 
+            <div className="Buttons">
+                <Button className="ButtonSpace" onClick={() => { newVital(patientid) }}>New Vital</Button>   
+                <Button className="ButtonSpace" variant="success" onClick={handleShow}>send daily motivational tips</Button>
+            </div>
             <>
-                <Button variant="primary" onClick={handleShow}>send daily motivational tips</Button>
-
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Send daily motivational tips to the patient !</Modal.Title>
