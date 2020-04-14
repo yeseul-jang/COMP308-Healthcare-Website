@@ -9,10 +9,10 @@ module.exports = function (app) {
     //handle a post request made to root path
 
 
-    app.route('/dailyrecord/:email')
+    app.route('/dailyrecord/:emailId')
     .post(dailyrecords.create)
 
-    app.param('email', dailyrecords.create);
+    app.param('emailId', dailyrecords.create);
     //
 
 	app.route('/dailyrecords/:dailyrecordId')
@@ -22,7 +22,7 @@ module.exports = function (app) {
 
     app.param('dailyrecordId', dailyrecords.dailyRecordByID);
 
-    app.route('/dailyrecords/:patientEmail')
+    app.route('/dailyrecordslist/:patientEmail')
     .get(dailyrecords.readDailyRecords)
     // Set up the parameter middleware
     //All param callbacks will be called before any handler of 
@@ -31,4 +31,10 @@ module.exports = function (app) {
     //even if the parameter is matched in multiple routes
     app.param('patientEmail', dailyrecords.dailyRecordsByPatient);
     
+
+    
+    app.route('/train_model/:patientEmail2')
+    .get(dailyrecords.trainAndPredict);
+
+    app.param('patientEmail2', dailyrecords.dailyRecordsByPatient2);
 };

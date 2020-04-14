@@ -57,6 +57,12 @@ function View(props) {
     });
   };
 
+  const viewHealthRecord = (email) => {
+    props.history.push({
+      pathname: '/dailyrecordlist/' + email
+    });
+  };
+
 
   return (
     <div className="App">
@@ -87,6 +93,7 @@ function View(props) {
         <button onClick={() => createEmergency( param)}>Send Emergency Alert</button>
         {/* <button onClick={() => viewPatient(screen)}>View My Account Details</button> */}
         <button onClick={() => createDailyrecord( param)}>Daily Health Self-Check</button>
+        <button onClick={() => viewHealthRecord( param)}>Health History</button>
       </div>
       }
     </div>

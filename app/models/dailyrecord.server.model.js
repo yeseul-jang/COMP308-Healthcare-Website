@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const DailyRecordSchema = new Schema({
     //
     pulseRate: Number,
-    bloodPressure: Number,
+    systolicPressure: Number,
+    diastolicPressure: Number,
     weight: Number,
     temperature: Number,
     respiratoryRate: Number,

@@ -8,7 +8,7 @@
     "email": ""
   },
   "dependencies": {
-    "bcrypt": "^4.0.0",
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",
@@ -21,7 +21,9 @@
     "mongoose": "^5.8.9",
     "morgan": "^1.9.1",
     "react-hook-form": "^5.4.0",
-    "react-player": "^1.15.3"
+    "react-player": "^1.15.3",
+    "@tensorflow/tfjs": "^1.7.0",
+    "@tensorflow/tfjs-node": "^1.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"

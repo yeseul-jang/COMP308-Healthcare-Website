@@ -49,6 +49,9 @@ exports.create = function (req, res, next, email) {
         } else {
             // Use the 'response' object to send a JSON response
             res.json(emergency);
+            // res.send({
+            //     message: 'Your emergency alert has been sent to first responders successfully !'
+            // });
             
         }
     });

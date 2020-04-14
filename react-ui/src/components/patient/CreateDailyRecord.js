@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from 'react-router-dom';
 
 function CreateDailyRecord(props) {
-  const [dailyrecord, setDailyrecord] = useState({ _id: '', pulseRate: null, bloodPressure: null, 
+  const [dailyrecord, setDailyrecord] = useState({ _id: '', pulseRate: null, systolicPressure: null, diastolicPressure:null,
   weight: null, temperature: null, respiratoryRate: null, nurseUsername: ''});
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/dailyrecord/"+ props.match.params.email;
@@ -15,8 +15,10 @@ function CreateDailyRecord(props) {
   const saveDailyRecord = (e) => {
     setShowLoading(true);
     e.preventDefault();
-    const data = { pulseRate: dailyrecord.pulseRate, 
-        bloodPressure: dailyrecord.bloodPressure, 
+    const data = { 
+        pulseRate: dailyrecord.pulseRate, 
+        systolicPressure: dailyrecord.systolicPressure, 
+        diastolicPressure: dailyrecord.diastolicPressure, 
         weight: dailyrecord.weight,
         temperature: dailyrecord.temperature,
         respiratoryRate: dailyrecord.respiratoryRate,
@@ -27,7 +29,7 @@ function CreateDailyRecord(props) {
     axios.post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/dailyrecords/')
+        props.history.push('/dailyrecordlist/' + props.match.params.email)
       }).catch((error) => setShowLoading(false));
   };
 
@@ -44,15 +46,18 @@ function CreateDailyRecord(props) {
         </Spinner> 
       } 
       <Jumbotron>
-    <h2>Daily Health Check-in for {props.match.params.email}</h2>
-        <Form onSubmit={saveDailyRecord}>
+    <h2 style={{textAlign: "center", color: "green"}}>Don't Forget Your Daily Health Check-in </h2>
+        <Form onSubmit={saveDailyRecord} style={{marginLeft: 380}}>
           <Form.Group>
             <Form.Label> Pulse Rate</Form.Label>
             <Form.Control type="number" name="pulseRate" id="pulseRate" placeholder="Enter your pulse rate" value={dailyrecord.pulseRate} onChange={onChange} style={{width: 700 }}/>
           </Form.Group>
           <Form.Group>
             <Form.Label> Blood Pressure</Form.Label>
-            <Form.Control type="number" name="bloodPressure" id="bloodPressure" placeholder="Enter your blood pressure" value={dailyrecord.bloodPressure} onChange={onChange} style={{width: 700 }}/>
+
+            <Form.Control type="number" name="systolicPressure" id="systolicPressure" placeholder="Enter your systolic pressure" value={dailyrecord.systolicPressure} onChange={onChange} style={{width: 300 }}/>
+            /
+            <Form.Control type="number" name="diastolicPressure" id="diastolicPressure" placeholder="Enter your diastolic pressure" value={dailyrecord.diastolicPressure} onChange={onChange} style={{width: 300 }}/>
           </Form.Group>
           <Form.Group>
             <Form.Label>Weight</Form.Label>
