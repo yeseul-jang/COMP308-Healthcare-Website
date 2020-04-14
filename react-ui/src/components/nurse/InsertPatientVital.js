@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import '../Registration.css'
 
 
-function Registration(props) {
+function InsertPatientVital(props) {
     const [vital, setVital]
         = useState({
             bodytemperature: '',
@@ -15,6 +15,12 @@ function Registration(props) {
             bloodpressure: '',
             respiratoryrate: '',
             visitedDate: ''
+        });
+
+
+    const [valid, setValidation]
+        = useState({
+            isDateValid: false
         });
 
     const [screen, setScreen] = useState('auth');
@@ -51,7 +57,7 @@ function Registration(props) {
 
     const saveUser = (e) => {
         setShowLoading(true);
-        console.log(">>>test id :::"+props.match.params.id)
+        console.log(">>>test id :::" + props.match.params.id)
         e.preventDefault();
         const data = {
             patientUsername: patientUsername,
@@ -67,118 +73,144 @@ function Registration(props) {
                 setShowLoading(false);
                 console.log("what is>>>" + result.data._id) // passing patient Id
                 props.history.push('/detailPatientInfo/' + props.match.params.id)
-                
+
             }).catch((error) => setShowLoading(false));
-         
+
     };
 
 
+
     const onChange = (e) => {
-        e.persist();
+        //e.persist();
         console.log(e.target.value)
         setVital({ ...vital, [e.target.name]: e.target.value });
     }
-    const goback = (id) => {
-        console.log("check user id: " +id);
-        props.history.push({
-          pathname: '/savePatientVital/' + id
-        });
-      }
+    const validateDate = (e) => {
+        const dateNumberRegExp = /^\d{4}-\d{2}-\d{2}$/;
+        console.log(e.target.value)
+        if (e.target.value.match(dateNumberRegExp)) {
+            setValidation({ isDateValid: true })
+        } else {
+            setValidation({ isDateValid: false })
+        }
+        setVital({ ...vital, [e.target.name]: e.target.value });
+    };
 
+        const isEnteredDateValid = () => { if (vital.visitedDate) return valid.isDateValid;};
 
-
-    return (
-        <div>
-            {showLoading &&
-                <Spinner animation="border" role="status">
-                    <span className="sr-only">Loading...</span>
-                </Spinner>
+        const inputClassNameHelper = boolean => {
+            switch (boolean) {
+                case true:
+                    return 'is-valid';
+                case false:
+                    return 'is-invalid';
+                default:
+                    return '';
             }
+        };
 
-            <div className="App">
-            <br></br>
-                <h2> Register a New Vital Signs</h2>
-                
+        const goback = (id) => {
+            console.log("check user id: " + id);
+            props.history.push({
+                pathname: '/detailPatientInfo/' + id
+            });
+        };
 
-                <form className="signUpForm" onSubmit={saveUser}>
-                    <div className="form-group row">
-                        <label htmlFor="name">Body Temperature</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="bodytemperature"
-                            name="bodytemperature"
-                            placeholder="Only number is available"
-                            value={vital.bodytemperature}
-                            onChange={onChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="name">Heart Rate</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="heartrate"
-                            name="heartrate"
-                            placeholder="Only number is available"
-                            value={vital.heartrate}
-                            onChange={onChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="name">Body pressure</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="bodypressure"
-                            name="bodypressure"
-                            placeholder="Only number is available"
-                            value={vital.bodypressure}
-                            onChange={onChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="name">Respiratory Rate</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="respiratoryrate"
-                            name="respiratoryrate"
-                            placeholder="Only number is available"
-                            value={vital.respiratoryrate}
-                            onChange={onChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="emailInput">Visited Date</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="visitedDate"
-                            name="visitedDate"
-                            placeholder="yyyy-mm-dd"
-                            value={vital.visitedDate}
-                            onChange={onChange}
-                            required
 
-                        />
-                    </div>
-                   
-                    <button type="submit" className="btn btn-info btn-block">
-                        Submit
-                     </button>
-                     <button  className="btn btn-success btn-block "  onClick={() => { goback(patientUsername) }}>
-                        Cancel
-                     </button>
-                     
-                </form>
+
+        return (
+            <div>
+                {showLoading &&
+                    <Spinner animation="border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>
+                }
+
+                <div className="App">
+                    <br></br>
+                    <h2> Register a New Vital Signs</h2>
+
+
+                    <form className="signUpForm" onSubmit={saveUser}>
+                        <div className="form-group row">
+                            <label htmlFor="name">Body Temperature</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="bodytemperature"
+                                name="bodytemperature"
+                                placeholder="Only number is available"
+                                value={vital.bodytemperature}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group row">
+                            <label htmlFor="name">Heart Rate</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="heartrate"
+                                name="heartrate"
+                                placeholder="Only number is available"
+                                value={vital.heartrate}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group row">
+                            <label htmlFor="name">Body pressure</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="bodypressure"
+                                name="bodypressure"
+                                placeholder="Only number is available"
+                                value={vital.bodypressure}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group row">
+                            <label htmlFor="name">Respiratory Rate</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="respiratoryrate"
+                                name="respiratoryrate"
+                                placeholder="Only number is available"
+                                value={vital.respiratoryrate}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-group row">
+                            <label htmlFor="emailInput">Visited Date</label>
+                            <input
+                                type="text"
+                                className={`form-control ${inputClassNameHelper(isEnteredDateValid())}`}
+                                id="visitedDate"
+                                name="visitedDate"
+                                placeholder="yyyy-mm-dd"
+                                value={vital.visitedDate}
+                                onChange={validateDate}
+                                required
+
+                            />
+                        </div>
+
+                        <button type="submit" className="btn btn-info btn-block">
+                            Submit
+                        </button>
+                        <button className="btn btn-success btn-block " onClick={() => { goback(patientUsername) }}>
+                            Cancel
+                        </button>
+
+                    </form>
+  
             </div>
-        </div>
+        </div >
     );
 }
 
-export default withRouter(Registration);
+export default withRouter(InsertPatientVital);
