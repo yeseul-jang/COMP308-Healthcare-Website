@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card';
 
 function Home(props) {
     const [screen, setScreen] = useState('auth');
+    const [param, setParam] = useState();
     const [fullName, setFullName] = useState('');
     const [currentUserId, setCurrentUserId] = useState('');
     const [dailyTips, setDailyTips] = useState([]);
@@ -23,6 +24,7 @@ function Home(props) {
             if (res.data.screen !== undefined) {
                 setScreen(res.data.screen);
                 setFullName(res.data.fullName);
+                setParam(res.data.email)
             }
         } catch (e) {
             setScreen('auth');
@@ -79,11 +81,20 @@ function Home(props) {
                         </div>
                         :
                         <div>
+                          
                             <h5>We will help you to monitor</h5>
                             <h5>your daily activities!</h5>
                         </div>
                     }
                     <br />
+                    {screen === 'patient'
+                        ?
+                        
+                            <View param={param} setParam={setParam}/>
+                            : <div></div>
+                    }
+                    <br />
+                    
 
                     {screen === 'auth'
                         ?
@@ -123,9 +134,13 @@ function Home(props) {
                         ))}
                     </div>
                 </div>
+                
 
                 :
                 <div></div>
+
+
+                
             }
 
         </div>
