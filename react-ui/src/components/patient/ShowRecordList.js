@@ -34,99 +34,98 @@ function DailyRecordList(props) {
     console.log("result.data >>>> ", result.data);
     setStatus(result.data);
   };
-
   return (
     <div>
       {showLoading && <Spinner animation="border" role="status">
-        {/* <span className="sr-only">Loading...</span> */}
       </Spinner>}
 
-      <h2 style={{ textAlign: "center", color: "green" }}>Your Daily Health Record</h2>
-      <br/>
+        <h2 style={{ textAlign: "center", color: "green" }}>Your Daily Health Record</h2>
+        <br />
 
-      <Table striped bordered hover style={{ marginTop: 20, width: 1200, marginLeft: 150 }}>
-        <thead>
-          <tr>
-            <th>Creation Time</th>
-            <th>Nurse Practitioner</th>
-            <th>Pulse Rate</th>
-            <th>Blood Pressure (systolic/diastolic)</th>
-            <th>Weight</th>
-            <th>Body Temperature</th>
-            <th>Respiratory Rate</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {data.map((item, idx) => (
-            <tr key={idx}>
-              <td >{item.creationTime}</td>
-              <td>{item.nurseUsername}</td>
-              <td>{item.pulseRate}</td>
-              <td>{item.systolicPressure}/{item.diastolicPressure}</td>
-              <td>{item.weight}</td>
-              <td>{item.temperature}</td>
-              <td>{item.respiratoryRate}</td>
-
+        <Table striped bordered hover style={{ marginTop: 20, width: 1200, marginLeft: 150 }}>
+          <thead>
+            <tr>
+              <th>Creation Time</th>
+              <th>Nurse Practitioner</th>
+              <th>Pulse Rate</th>
+              <th>Blood Pressure (systolic/diastolic)</th>
+              <th>Weight</th>
+              <th>Body Temperature</th>
+              <th>Respiratory Rate</th>
             </tr>
+          </thead>
 
-          ))}
-        </tbody>
-      </Table>
+          <tbody>
+            {data.map((item, idx) => (
+              <tr key={idx}>
+                <td >{item.creationTime}</td>
+                <td>{item.nurseUsername}</td>
+                <td>{item.pulseRate}</td>
+                <td>{item.systolicPressure}/{item.diastolicPressure}</td>
+                <td>{item.weight}</td>
+                <td>{item.temperature}</td>
+                <td>{item.respiratoryRate}</td>
 
-      <br/>
-      <div className="statusInfo">        
-        <h5 className="title"><b>Your health records should be following like this:</b></h5>
-        <div className="listTxt">
-          <li><b>Pulse Rate</b>: 60 to 80 beats per minute</li>
-          <li><b>Blood Pressure</b>: less than 120/80 mm Hg</li>
-          <li><b>Temperature</b>: 97.8º to 99.1º</li>
-          <li><b>Respiratory Rate</b>: 12 to 20 breaths per minute</li>
+              </tr>
+
+            ))}
+          </tbody>
+        </Table>
+
+
+        <br />
+        <div className="statusInfo">
+          <h5 className="title"><b>Your health records should be following like this:</b></h5>
+          <div className="listTxt">
+            <li><b>Pulse Rate</b>: 60 to 80 beats per minute</li>
+            <li><b>Blood Pressure</b>: less than 120/80 mm Hg</li>
+            <li><b>Temperature</b>: 97.8º to 99.1º</li>
+            <li><b>Respiratory Rate</b>: 12 to 20 breaths per minute</li>
+          </div>
         </div>
-      </div>
 
-      <br/><br/>
-      <div className="Buttons">
-        <OverlayTrigger
-          key='right'
-          placement='right'
-          overlay={
-            <Tooltip>
-              Check your medical status using your <strong>3 most recent health records</strong>!!
+        <br /><br />
+        <div className="Buttons">
+          <OverlayTrigger
+            key='right'
+            placement='right'
+            overlay={
+              <Tooltip>
+                Check your medical status using your <strong>3 most recent health records</strong>!!
             </Tooltip>
-          }
-        >
-          <Button className="ButtonSpace" variant="warning" onClick={() => checkStatus()}>Check Current Status</Button>
-        </OverlayTrigger>
-      </div>
+            }
+          >
+            <Button className="ButtonSpace" variant="warning" onClick={() => checkStatus()}>Check Current Status</Button>
+          </OverlayTrigger>
+        </div>
 
-      <br/>
-      <br/>
-      {status === 'danger'
-        ?
-        <div className="statusAlert">
-          <Alert variant='danger'>
-            <b>See a doctor within 24 hours !!</b><br/><br/>
+        <br />
+        <br />
+        {status === 'danger'
+          ?
+          <div className="statusAlert">
+            <Alert variant='danger'>
+              <b>See a doctor within 24 hours !!</b><br /><br />
             Your symptoms may require prompt medical evaluation. If your symptoms suddenly get worse, go to the nearest emergency department.
           </Alert>
-        </div>
-        :
-        <div>
-        </div>
-      }
+          </div>
+          :
+          <div>
+          </div>
+        }
 
-      {status === 'ok'
-        ?
-        <div className="statusAlert">
-          <Alert variant='success'>
-            <b>Self-treatment may be enough</b><br/><br/>
+        {status === 'ok'
+          ?
+          <div className="statusAlert">
+            <Alert variant='success'>
+              <b>Self-treatment may be enough</b><br /><br />
             Usually, your symptoms don’t require medical care and they may resolve on their own. You may try to manage your condition with home remedies. If your symptoms get worse or new symptoms appear, consult a doctor immediately.
           </Alert>
-        </div>
-        :
-        <div>
-        </div>
-      }
+          </div>
+          :
+          <div>
+          </div>
+        }
     </div>
   );
 }

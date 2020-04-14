@@ -4,7 +4,6 @@ import axios from 'axios';
 import homeImg from './home.png';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import View from './View'
 
 function Home(props) {
     const [screen, setScreen] = useState('auth');
@@ -105,12 +104,12 @@ function Home(props) {
                         ?                        
                         <div className="Buttons">
                             <Button className="ButtonSpace" variant="warning" onClick={() => createEmergency( param)}>Send Emergency Alert</Button>
-                            <Button className="ButtonSpace" variant="info" onClick={() => createDailyrecord( param)}>Daily Health Self-Check</Button>
+                            <Button className="ButtonSpace" variant="primary" onClick={() => createDailyrecord( param)}>Daily Health Self-Check</Button>
                         </div>
                         : <div></div>
                     }
                     <br />
-
+                    
 
                     {screen === 'auth'
                         ?

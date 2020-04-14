@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from 'react-router-dom';
 
 function CreateDailyRecord(props) {
-  const [dailyrecord, setDailyrecord] = useState({ _id: '', pulseRate: null, systolicPressure: null, diastolicPressure:null,
+  const [dailyrecord, setDailyrecord] = useState({ _id: '', pulseRate: null, bloodPressure: null, 
   weight: null, temperature: null, respiratoryRate: null, nurseUsername: ''});
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/dailyrecord/"+ props.match.params.email;

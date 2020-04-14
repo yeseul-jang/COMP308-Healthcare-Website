@@ -99,9 +99,6 @@ exports.readDailyRecords = function(req, res) {
 };
 
 exports.dailyRecordsByPatient = function (req, res, next, email) {
-
-    console.log("dailyRecordsByPatient IN >>>>> ", email);
-
     Patient.findOne({email: email}, (err, patient) => {
         if(err) { return getErrorMessage(err);}
         req.email = email;
