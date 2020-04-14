@@ -9,10 +9,10 @@ module.exports = function (app) {
     //handle a post request made to root path
 
 
-    app.route('/dailyrecord/:email')
+    app.route('/dailyrecord/:emailId')
     .post(dailyrecords.create)
 
-    app.param('email', dailyrecords.create);
+    app.param('emailId', dailyrecords.create);
     //
 
 	app.route('/dailyrecords/:dailyrecordId')
